@@ -14,7 +14,7 @@ namespace FitBuddy.Controllers
         Product produkt1 = new Product()
         {
             Id=1,
-            Name="Chlebek Boży",
+            Name="God'sss Bread",
             Kcal=1337,
             Carbo=400,
             Whey=100,

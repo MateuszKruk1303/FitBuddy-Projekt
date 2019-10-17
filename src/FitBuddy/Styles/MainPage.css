@@ -1,25 +1,17 @@
-*{
-
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-
 }
 
-body{
-
+body {
     background-image: url("bckgr.jpg");
-
-
 }
 
-header{
-
+header {
     position: relative;
     height: 100vh;
     width: 99vw;
-
-    
 }
 
 /* #logo{
@@ -34,46 +26,38 @@ header{
 
 } */
 
-#logo
-{
+#logo {
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-top: 6vh;
     width: 25%;
-
 }
 
-#underlogo{
-
+#underlogo {
     font-family: 'Indie Flower', cursive;
     text-align: center;
     font-size: 13vw;
     margin-top: 3vh;
     color: rgb(53, 53, 53);
-
-
 }
 
 
 
-section{
-
-display: block;
-height: 300vh;
-width: 80vw;
-padding-top: 100px;
-background-color: azure;
-margin-left: auto;
-margin-right:auto;
-margin-top: -3vh;
-
+section {
+    display: block;
+    height: 300vh;
+    width: 80vw;
+    padding-top: 10000px;
+    background-color: azure;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -3vh;
 }
 
-#proda{
-
+#proda {
     font-size: 50px;
     color: black;
-    text-align:center;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
