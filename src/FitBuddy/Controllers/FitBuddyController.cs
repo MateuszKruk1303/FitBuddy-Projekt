@@ -11,21 +11,25 @@ namespace FitBuddy.Controllers
     {
         // GET: FitBuddy
 
-        Product produkt1 = new Product()
-        {
-            Id=1,
-            Name="God'sss Bread",
-            Kcal=1337,
-            Carbo=400,
-            Whey=100,
-            Fat=10
-
-
-        };
 
         public ActionResult Index()
         {
-            return View(produkt1);
+
+            FitBuddyEntities db = new FitBuddyEntities();
+            List<Products> prod = db.Products.ToList();
+
+            var produ = new Product()
+            {
+                pName = prod[0].pName,
+                Kcal = prod[0].Kcal,
+                Protein = prod[0].Protein,
+                Fats = prod[0].Fats,
+                Carb = prod[0].Carb
+
+
+            };
+   
+            return View(produ);
         }
 
 

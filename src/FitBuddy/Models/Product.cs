@@ -3,23 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+
 namespace FitBuddy.Models
 {
     public class Product
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int Kcal { get; set; }
-        public int Carbo { get; set; }
-        public int Whey { get; set; }
-        public int Fat { get; set; }
+        public string pName { get; set; }
+        public double Kcal { get; set; }
+        public double Protein { get; set; }
+        public double Carb { get; set; }
+        public double Fats { get; set; }
 
-        public string DisplayProduct
+        public string Display()
         {
-            get
-            {
-                return Id + " " + Name + " " + Kcal + "kcal  " + "Macro:" + "Carb " + Carbo + " Protein " + Whey + " Fats " + Fat;
-            }
+            return pName + ": " + Kcal + " Carbs: " + Carb + " Proteins: " + Protein + " Fats: " + Fats; 
         }
     }
 }
