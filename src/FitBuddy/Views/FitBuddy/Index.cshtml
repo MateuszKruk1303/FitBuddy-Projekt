@@ -22,7 +22,17 @@
         <p id="underlogo">FitBuddy</p>
     </header>
     <section>
-        <p id="proda"> @Model.Display() </p>
+        @using (Html.BeginForm("Index", "FitBuddy"))
+        {
+            @Html.EditorFor(m => m)
+            <input type="submit" value="Send" />
+        }
+
+        
+
+
+
+
     </section>
 
 
