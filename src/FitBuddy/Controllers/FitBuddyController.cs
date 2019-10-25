@@ -60,26 +60,24 @@ namespace FitBuddy.Controllers
 
             if(prod == null)
             {
-                return HttpNotFound();
+                Product notf = new Product()
+                {
+                pName = "Not Found",
+                Kcal = 0,
+                Protein=0,
+                Carb=0,
+                Fats=0
+
                 
+                };
+
+                return View(notf);
+
             }
 
             return View(prod);
           
             
-            //Product product = new Product()
-            //{
-            //    pName = name,
-            //    Kcal = 0,
-            //    Protein = 0,
-            //    Carb = 0,
-            //    Fats = 0
-            //};
-            //return View(product);
-            //ProductsContext db = new ProductsContext();
-            //return View(product);
-            //product = db.Products.FirstOrDefault(x => x.pName.Contains(name));
-
             
 
         }
