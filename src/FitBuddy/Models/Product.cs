@@ -11,15 +11,15 @@ namespace FitBuddy.Models
     {
       
         [Key]
-        [Required(ErrorMessage = "enter the Name of product")]
-        public string pName { get; set; }
-        [Required(ErrorMessage = "enter the Kcal of product")]
+        [Required(ErrorMessage = " ")]
+        public string Name { get; set; }
+        [Required(ErrorMessage = " ")]
         public double Kcal { get; set; }
-        [Required(ErrorMessage = "enter the Protein of product")]
+        [Required(ErrorMessage = " ")]
         public double Protein { get; set; }
-        [Required(ErrorMessage = "enter the Carbo of product")]
+        [Required(ErrorMessage = " ")]
         public double Carb { get; set; }
-        [Required(ErrorMessage = "enter the Fats of product")]
+        [Required(ErrorMessage = " ")]
         public double Fats { get; set; }
     }
 }

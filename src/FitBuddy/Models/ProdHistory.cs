@@ -15,7 +15,7 @@ namespace FitBuddy.Models
     public partial class ProdHistory
     {
         public int IDu { get; set; }
-        public string pName { get; set; }
+        public string Name { get; set; }
         public Nullable<double> Kcal { get; set; }
         public Nullable<double> Protein { get; set; }
         public Nullable<double> Carb { get; set; }

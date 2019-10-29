@@ -1,0 +1,67 @@
+﻿@model FitBuddy.Models.Product
+
+@{
+
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Styles/styleadd.css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <img id="icon" src="~/Styles/icon.png">
+    </header>
+    <nav class="normal">
+        <a class="buta" href="Scale">
+            <i class="fa fa-balance-scale elo" aria-hidden="true"></i>
+        </a>
+        <a class="buta plus" href="Add">
+            <i class="fa fa-plus elo" aria-hidden="true"></i>
+        </a>
+        <a class="buta" href="Scale">
+            <i class="fa fa-user-plus elo" aria-hidden="true"></i>
+        </a>
+        <a class="buta plus" href="Scale">
+            <i class="fa fa-arrow-up elo" aria-hidden="true"></i>
+        </a>
+    </nav>
+    <nav class="mobile">
+        <a class="butam" href="Scale">
+            <i class="fa fa-balance-scale elo" aria-hidden="true"></i>
+        </a></br>
+        <a class="butam plus" href="Add">
+            <i class="fa fa-plus elo" aria-hidden="true"></i>
+        </a></br>
+        <a class="butam" href="Scale">
+            <i class="fa fa-user-plus elo" aria-hidden="true"></i>
+        </a></br>
+        <a class="butam plus" href="Scale">
+            <i class="fa fa-arrow-up elo" aria-hidden="true"></i>
+        </a></br>
+    </nav>
+    <section>
+        @using (Html.BeginForm("Add", "FitBuddy"))
+        {
+            <div class="form">@Html.EditorFor(m => m)</div>
+            <input type="submit" value="Send"/>
+        }
+
+    </section>
+    <footer>@ViewBag.existing</footer>
+</body>
+<script src="script.js"></script>
+
+</html>

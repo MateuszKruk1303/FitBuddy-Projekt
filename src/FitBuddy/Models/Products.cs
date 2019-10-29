@@ -16,8 +16,8 @@ namespace FitBuddy.Models
     {
         public string pName { get; set; }
         public double Kcal { get; set; }
-        public double Carb { get; set; }
-        public double Fats { get; set; }
-        public double Protein { get; internal set; }
+        public Nullable<double> Protein { get; set; }
+        public Nullable<double> Carb { get; set; }
+        public Nullable<double> Fats { get; set; }
     }
 }

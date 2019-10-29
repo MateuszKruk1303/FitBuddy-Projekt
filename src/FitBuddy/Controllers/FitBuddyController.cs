@@ -17,39 +17,53 @@ namespace FitBuddy.Controllers
        public ProductsContext db = new ProductsContext();
         // GET: FitBuddy
 
+        public string existing;
 
-        public ActionResult Index()
+
+        public ActionResult Indexx()
+        {
+            return View();
+        }
+
+        public ActionResult Add()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(Product product)
+        public ActionResult Add(Product product)
         {
-            if(!ModelState.IsValid)
+            
+            if (!ModelState.IsValid)
             {
-                return View("Index", product);
+                ViewBag.existing = "Fill up every field!";
+                return View(); ;
+            }
+            if(db.Products.Find(product.Name)!=null)
+            {
+                ViewBag.existing = "This item is already in database!";
+                return View();
             }
             else
             {
-                
+                ViewBag.existing = "Item succesfully added!";
                 db.Products.Add(product);
                 db.SaveChanges();
-                return View("Index");
+                return View("Add");
             }
 
          
 
         }
 
-        public ActionResult Zwrot()
+        public ActionResult Scale()
         {
            
             return View();
         }
 
         [HttpPost]
-        public ActionResult Zwrot(string pronam="")
+        public ActionResult Scale(string pronam="")
         {
             if (pronam == null)
             {
@@ -62,7 +76,7 @@ namespace FitBuddy.Controllers
             {
                 Product notf = new Product()
                 {
-                pName = "Not Found",
+                Name = "Not Found",
                 Kcal = 0,
                 Protein=0,
                 Carb=0,

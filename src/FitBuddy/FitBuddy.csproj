@@ -130,9 +130,16 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\MainPage.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Styles\bckgr 2.jpg" />
     <Content Include="Styles\bckgr.jpg" />
+    <Content Include="Styles\bckgr3.jpg" />
+    <Content Include="Styles\bckgr5.jpg" />
+    <Content Include="Styles\icon.png" />
     <Content Include="Styles\Logo.png" />
     <Content Include="Styles\MainPage.css" />
+    <Content Include="Styles\styleadd.css" />
+    <Content Include="Styles\styleindex.css" />
+    <Content Include="Styles\stylescale.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +191,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\FitBuddy\Zwrot.cshtml" />
+    <Content Include="Views\FitBuddy\indexx.cshtml" />
+    <Content Include="Views\FitBuddy\Scale.cshtml" />
+    <Content Include="Views\FitBuddy\Add.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
