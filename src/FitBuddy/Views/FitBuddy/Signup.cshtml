@@ -1,7 +1,6 @@
-﻿@model FitBuddy.Models.Product
+﻿@model FitBuddy.Models.User
 
 @{
-
     Layout = null;
 }
 
@@ -15,8 +14,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link rel="stylesheet" href="~/Styles/styleindex.css">
+
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Styles/styleadd.css">
     <title>Document</title>
 </head>
 
@@ -53,10 +56,16 @@
         </a></br>
     </nav>
     <section>
-        <p class="weltext welcome">WELCOME</p>
-        <p class="weltext desc"> LET'S CALCULATE YOUR FOOD!</p>
+        @using (Html.BeginForm("Signup", "FitBuddy", FormMethod.Post))
+        {
+            <div class="formik">
+                <input class="Textfield" type="text" name="Nick"/>
+                <input class="Textfield" type="text" name="Pass"/>
+                <input class="Fromb" type="submit" value="SELECT"/>
+            </div>
+        }
     </section>
-    <footer></footer>
+    <footer>@ViewBag.existing</footer>
 </body>
 <script src="script.js"></script>
 

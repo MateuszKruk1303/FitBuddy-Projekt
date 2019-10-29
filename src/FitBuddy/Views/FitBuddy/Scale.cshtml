@@ -14,10 +14,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link rel="stylesheet" href="~/Styles/stylescale.css">
+
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Styles/stylescale.css">
     <title>Document</title>
 </head>
 
@@ -40,32 +42,88 @@
         </a>
     </nav>
     <nav class="mobile">
-        <a class="butam" href="Scale.html">
+        <a class="butam" href="Scale">
             <i class="fa fa-balance-scale elo" aria-hidden="true"></i>
         </a></br>
-        <a class="butam plus" href="Add.html">
+        <a class="butam plus" href="Add">
             <i class="fa fa-plus elo" aria-hidden="true"></i>
         </a></br>
-        <a class="butam" href="Scale.html">
+        <a class="butam" href="Scale">
             <i class="fa fa-user-plus elo" aria-hidden="true"></i>
         </a></br>
-        <a class="butam plus" href="Scale.html">
+        <a class="butam plus" href="Scale">
             <i class="fa fa-arrow-up elo" aria-hidden="true"></i>
         </a></br>
     </nav>
     <section>
         @using (Html.BeginForm("Scale", "FitBuddy", FormMethod.Post))
         {
-        <div class="formik">
-            <input class="Textfield" type="text" name="Pronam" />
-            <input class="Fromb" type="submit" value="SELECT" />
-        </div>
-        <span class="display">@Html.DisplayFor(m => m)</span>
+            <div class="formik">
+                <input class="Textfield" type="text" name="Pronam" />
+                <input class="Fromb" type="submit" value="SELECT" />
+            </div>
+            <!--<span class="display">@Html.DisplayFor(m => m)</span>-->
+            <!-- <div class="display">
+            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Kcal)
+            @Html.DisplayFor(model => model.Protein)
+            @Html.DisplayFor(model => model.Carb)
+            @Html.DisplayFor(model => model.Fats)
+        </div>-->
+
+            <table class="table table-borderless table-dark desktop">
+                <thead>
+                    <tr>
+                        <th scope="col">Product</th>
+                        <th scope="col">Calories</th>
+                        <th scope="col">Protein</th>
+                        <th scope="col">Carbohydrates</th>
+                        <th scope="col">Fats</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">@Html.DisplayFor(model => model.Name)</th>
+                        <td>@Html.DisplayFor(model => model.Kcal)</td>
+                        <td>@Html.DisplayFor(model => model.Protein)</td>
+                        <td>@Html.DisplayFor(model => model.Carb)</td>
+                        <td>@Html.DisplayFor(model => model.Fats)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-borderless table-dark mobile">
+                <thead>
+                    <tr>
+                        <th scope="col">Product</th>
+                        <th scope="col">@Html.DisplayFor(model => model.Name)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Calories</th>
+                        <td>@Html.DisplayFor(model => model.Kcal)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Protein</th>                    
+                        <td>@Html.DisplayFor(model => model.Protein)</td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row">Carbohydrates</th>
+                        <td>@Html.DisplayFor(model => model.Carb)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Fats</th>
+                        <td>@Html.DisplayFor(model => model.Fats)</td>
+                    </tr>
+                </tbody>
+            </table>
 
         }
     </section>
-    <footer>If you cant find your product, probably it isn't in our database. Add it!</footer>
-</body>
-<script src="script.js"></script>
+                <footer>@ViewBag.existing</footer>
+            </body>
+            <script src="script.js"></script>
 
-</html>
+            </html>

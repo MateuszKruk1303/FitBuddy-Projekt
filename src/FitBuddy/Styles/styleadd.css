@@ -35,20 +35,17 @@ header
 }
 
 
-.normal
-{
+.normal {
     position: fixed;
-    display:block;
+    display: block;
     height: 38vh;
-    width:4vw;
+    width: 4vw;
     max-width: 4vw;
     min-width: 40px;
     top: 25%;
-    background-image:url(bckgr5.jpg);
+    background-color: rgb(82, 82, 82);
     opacity: 0.6;
     float: left;
-
-  
 }
 
 
@@ -129,6 +126,11 @@ section{
     font-family: 'Sitka Subheading';
 }
 
+.Fromb {
+
+    margin: 0 auto;
+}
+
 input[type=submit] {
 
     background-color: lawngreen;
@@ -163,17 +165,16 @@ footer {
         display:none;
     }
 
-    nav.mobile{
-   
+    nav.mobile {
         position: fixed;
-        display:block;
+        display: block;
         height: 38vh;
-        width:4vw;
+        width: 4vw;
         max-width: 6vw;
         min-width: 40px;
         font-size: 20px;
         top: 20%;
-        background-color: grey;
+        background-color: rgb(82, 82, 82);
     }
 
     .butam{
