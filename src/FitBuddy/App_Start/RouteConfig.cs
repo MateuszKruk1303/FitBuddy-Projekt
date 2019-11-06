@@ -16,7 +16,7 @@ namespace FitBuddy
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "FitBuddy", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "FitBuddy", action="Welcome", id = UrlParameter.Optional }
             );
         }
     }

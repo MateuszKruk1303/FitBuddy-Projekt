@@ -19,14 +19,15 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/Styles/styleadd.css">
+    <link rel="stylesheet" href="~/Styles/stylelogin.css">
     <title>Document</title>
 </head>
 
 <body>
     <header>
-        <a href="Add"><img id="icon" src="~/Styles/icon.png"></a>
+        <a href="Index"><img id="icon" src="~/Styles/icon.png"></a>
     </header>
+
     <nav class="normal">
         <a class="buta" href="Scale">
             <i class="fa fa-balance-scale elo" aria-hidden="true"></i>
@@ -34,10 +35,10 @@
         <a class="buta plus" href="Add">
             <i class="fa fa-plus elo" aria-hidden="true"></i>
         </a>
-        <a class="buta" href="Scale">
+        <a class="buta" href="Signup">
             <i class="fa fa-user-plus elo" aria-hidden="true"></i>
         </a>
-        <a class="buta plus" href="Scale">
+        <a class="buta plus" href="Login">
             <i class="fa fa-arrow-up elo" aria-hidden="true"></i>
         </a>
     </nav>
@@ -48,25 +49,24 @@
         <a class="butam plus" href="Add">
             <i class="fa fa-plus elo" aria-hidden="true"></i>
         </a></br>
-        <a class="butam" href="Scale">
+        <a class="butam" href="Signup">
             <i class="fa fa-user-plus elo" aria-hidden="true"></i>
         </a></br>
-        <a class="butam plus" href="Scale">
+        <a class="butam plus" href="Login">
             <i class="fa fa-arrow-up elo" aria-hidden="true"></i>
         </a></br>
     </nav>
     <section>
         @using (Html.BeginForm("Login", "FitBuddy", FormMethod.Post))
         {
-            <div class="formik">
-                <input class="Textfield" type="text" name="Nick" />
-                <input class="Textfield" type="text" name="Pass" />
-                <input class="Fromb" type="submit" value="SELECT" />
-            </div>
+            <input class="Textfield my-4" type="text" placeholder="Nickname" name="Nick" />
+            <input class="Textfield my-4" type="password" placeholder="Password" name="Pass" />
+            <input class="btn btn-success btn-outline" type="submit" value="Login" />
         }
 
-        <input class="Fromb" type="submit" value="SELECT" />
-
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </section>
     <footer>@ViewBag.existing</footer>
 </body>

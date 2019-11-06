@@ -6,21 +6,12 @@ using System.Web;
 
 namespace FitBuddy.Models
 {
-    public class User
+    public class UserProgress
     {
-        public int IDu{ get; set; }
         [Key]
-        [Required(ErrorMessage = " ")]
-        public string Nick{ get; set; }
-        [Required(ErrorMessage = " ")]
-        public string Pass{ get; set; }
-        [Required(ErrorMessage = " ")]
-        public string Email{ get; set; }
+        public int proID { get; set; }
         public int Limit { get; set; }
         public double Weight { get; set; }
-        public int Age { get; set; }
-        public string Sex { get; set; }
-        public int Height { get; set; }
         public double BMI { get; set; }
         public DateTime Date { get; set; }
         public int waist { get; set; }
@@ -29,6 +20,7 @@ namespace FitBuddy.Models
         public int calf { get; set; }
         public int forearm { get; set; }
         public int chest { get; set; }
+        public string Nick { get; set; }
 
 
 

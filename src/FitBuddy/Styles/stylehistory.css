@@ -36,11 +36,11 @@ header {
     display: block;
     height: 38vh;
     width: 4vw;
-    max-width: 100px;
     min-width: 80px;
+    max-width: 100px;
     top: 25%;
     background-color: rgb(82, 82, 82);
-    opacity: 0.6;
+    opacity: 0.7;
     float: left;
 }
 
@@ -58,7 +58,6 @@ header {
     text-overflow: clip;
     transition: 1s;
     color: greenyellow;
-    font-weight: 900;
 }
 
 
@@ -77,22 +76,60 @@ nav.mobile {
     display: none;
 }
 
+table.mobile {
+    display: none;
+}
+
 section {
+    position: relative;
     display: block;
-    width: 72vw;
-    max-width: 265px;
+    top: 10%;
+    width: 80vw;
+    height: 50vh;
     margin: 0 auto;
-    margin-top: 8rem !important;
     text-align: center;
-    opacity: 0.7;
+    opacity: 0.8;
+}
+
+.display {
+    display: inline-block;
     color: white;
+    margin: 0 auto;
+    margin-top: 30px;
+    font-size: 1.7vw;
+    text-align: center;
+    width: 70vw;
+}
+
+.display-field {
+    float: left;
+    margin: 1vw;
+    width: 5vw;
+}
+
+.display-label {
+    float: left;
+    margin: 1vw;
+    width: 5vw;
+}
+
+.formik {
+    width: 35.5vw;
+    max-width: 300px;
+    min-width: 230px;
+    margin: 0 auto;
+}
+
+.table {
+    transform: translateX(2%);
+    margin: 0 auto;
+    margin-top: 70px;
+    min-width: 380px;
+    font-size: 15px;
 }
 
 
-.editor-field {
-}
-
-.text-box {
+input[type=text] {
     clear: both;
     background-color: dimgrey;
     border: 2px double black;
@@ -105,17 +142,13 @@ section {
     font-size: larger;
 }
 
-.editor-label {
-    color: white;
-    font-size: 30px;
-    font-family: 'Sitka Subheading';
-}
 
-.Fromb {
-    margin: 0 auto;
-}
+
+
+
 
 input[type=submit] {
+    
     background-color: lawngreen;
     border: none;
     font-size: 25px;
@@ -124,27 +157,28 @@ input[type=submit] {
     margin-top: 10px;
 }
 
+
+
+input[type=text]:focus {
+    border: 3px solid greenyellow;
+}
+
+
+
+footer {
+    color: lawngreen;
+    font-size: 2.6vw;
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
+}
+
+@media (max-width: 1100px) {
+
     input[type=submit]:hover {
         padding-left: 3vw;
         padding-right: 3vw;
         transition: 1s;
     }
-
-.editor-field:focus {
-    border: 3px solid greenyellow;
-}
-
-footer {
-    display: block;
-    color: lawngreen;
-    margin-top: 4rem;
-    font-size: calc(2rem + 1vw);
-    font-family: 'Indie Flower', cursive;
-    text-align: center;
-}
-
-
-@media (max-width: 1300px) {
 
     nav.normal {
         display: none;
@@ -159,7 +193,20 @@ footer {
         min-width: 40px;
         font-size: 20px;
         top: 20%;
-        background-color: rgb(82, 82, 82);
+        background-color: grey;
+    }
+
+    table.desktop {
+        display: none;
+    }
+
+    table.mobile {
+        display: table;
+        margin: 0 auto;
+        width: 60vw;
+        min-width: 100px;
+        margin-top: 180px;
+        font-weight: 500;
     }
 
     .butam {

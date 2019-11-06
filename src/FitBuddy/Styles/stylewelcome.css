@@ -1,0 +1,107 @@
+﻿
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    background-image: url(bckgr3.jpg);
+}
+
+header {
+    width: 10vw;
+    max-width: 400px;
+    height: 20vh;
+    max-height: 400px;
+    min-width: 100px;
+    min-height: 100px;
+    margin: 0 auto;
+    opacity: 0.7;
+}
+
+#icon {
+    margin: 0 auto;
+    width: 10vw;
+    height: 10vw;
+    max-height: 300px;
+    min-width: 100px;
+    min-height: 100px;
+    max-width: 300px;
+}
+
+
+
+section.desktop {
+
+    width: 40vw;
+    max-width: 611px;
+    max-height: 530px;
+    margin: 0 auto;
+    margin-top: 7vh;
+}
+
+.welcome.desktop {
+    font-size: calc(3vw + 3vh);
+    color: white;
+    text-align: center;
+    font-family: 'Shadows Into Light', cursive;
+    
+}
+
+.aa {
+
+    text-decoration: none;
+}
+
+.welcome.desktop:hover {
+    text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px, 1px 2px 7px rgba(206,89,55,0.8);
+    transition: 1000ms;
+}
+
+section.mobile {
+ 
+    display: none;
+}
+
+.welcome.mobile {
+
+   display: none;
+}
+
+
+
+@media (max-width: 610px) {
+
+    section.mobile {
+        display: block;
+        width: 80vw;
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .welcome.mobile {
+
+        display: inline;
+        font-size: calc(8vw + 15px);
+        color: white;
+        text-align: center;
+    }
+
+    section.desktop {
+
+        display: none;
+    }
+
+    .welcome.desktop {
+        display: none;
+    }
+
+}
+
+@media (min-width: 1700px) {
+
+
+}

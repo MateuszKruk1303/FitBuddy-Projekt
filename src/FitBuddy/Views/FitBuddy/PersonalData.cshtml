@@ -1,7 +1,6 @@
-﻿@model FitBuddy.Models.Product
+﻿@model FitBuddy.Models.User
 
 @{
-
     Layout = null;
 }
 
@@ -15,10 +14,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <link rel="stylesheet" href="~/Styles/styleadd.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Styles/styleaccount.css">
     <title>Document</title>
 </head>
 
@@ -26,6 +27,7 @@
     <header>
         <a href="Index"><img id="icon" src="~/Styles/icon.png"></a>
     </header>
+
 
     @if (ViewBag.username != null)
     {
@@ -69,15 +71,26 @@
             <i class="fa fa-arrow-up elo" aria-hidden="true"></i>
         </a></br>
     </nav>
-    <section>
-        @using (Html.BeginForm("Add", "FitBuddy"))
+    <section style="height: 650px;">
+        @using (Html.BeginForm("PersonalData", "FitBuddy", FormMethod.Post))
         {
-            <div class="form">@Html.EditorFor(m => m)</div>
-            <input class="btn btn-success btn-outline text-dark mt-5" type="submit" value="Send" />
+            <input class="Textfield mt-3 mb-3 mx-auto" type="text" name="wg" placeholder="Weight" />
+            <input class="Textfield mt-3 mb-3 mx-auto" type="text" name="hg" placeholder="Height" />
+            <input class="Textfield mt-3 mb-3 mx-auto" type="text" name="age" placeholder="Age" />
+            <input class="Textfield mt-3 mb-3 mx-auto" type="text" name="sex" placeholder="Gender(m or k)" />
+            <input class="Textfield mt-3 mb-3 mx-auto" type="text" name="waist" placeholder="Waist measurment" />
+            <input class="Textfield mt-3 mb-3 mx-auto" type="text" name="arm" placeholder="Arm measurment" />
+            <input class="Textfield mt-3 mb-3 mx-auto" type="text" name="thigh" placeholder="Thigh measurment" />
+            <input class="Textfield mt-3 mb-3 mx-auto" type="text" name="calf" placeholder="Celf measurment" />
+            <input class="Textfield mt-3 mb-3 mx-auto" type="text" name="forearm" placeholder="Forearm measurment" />
+            <input class="Textfield mt-3 mb-3 mx-auto" type="text" name="chest" placeholder="Chest measurment" />
+            <input class="Fromb my-4 p-1 mx-auto" type="submit" value="Update" />
         }
-
     </section>
-    <footer>@ViewBag.existing</footer>
+
+    <footer class="mt-5" style="color:lawngreen;">
+        @ViewBag.existing
+    </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

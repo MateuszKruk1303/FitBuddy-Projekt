@@ -1,0 +1,98 @@
+﻿@model FitBuddy.Models.User
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Styles/styleaccount.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <a href="Index"><img id="icon" src="~/Styles/icon.png"></a>
+    </header>
+
+
+    @if (ViewBag.username != null)
+    {
+
+        <div class="dropdown fixed-top">
+            <button class="btn btn-secondary text-light btn-lg" data-toggle="dropdown" type="button"><i class="fas fa-bars"></i></button>
+            <div class="dropdown-menu">
+                <a href="Logout" class="dropdown-item">Log out</a>
+                <a href="History" class="dropdown-item">History</a>
+                <a href="Account" class="dropdown-item">Account</a>
+            </div>
+        </div>
+
+    }
+
+    <footer style="color: lawngreen;">
+        Below You can change your calories limit
+        </footer>
+
+        <nav class="normal">
+            <a class="buta" href="Scale">
+                <i class="fa fa-balance-scale elo" aria-hidden="true"></i>
+            </a>
+            <a class="buta plus" href="Add">
+                <i class="fa fa-plus elo" aria-hidden="true"></i>
+            </a>
+            <a class="buta" href="Signup">
+                <i class="fa fa-user-plus elo" aria-hidden="true"></i>
+            </a>
+            <a class="buta plus" href="Login">
+                <i class="fa fa-arrow-up elo" aria-hidden="true"></i>
+            </a>
+        </nav>
+        <nav class="mobile">
+            <a class="butam" href="Scale">
+                <i class="fa fa-balance-scale elo" aria-hidden="true"></i>
+            </a></br>
+            <a class="butam plus" href="Add">
+                <i class="fa fa-plus elo" aria-hidden="true"></i>
+            </a></br>
+            <a class="butam" href="Signup">
+                <i class="fa fa-user-plus elo" aria-hidden="true"></i>
+            </a></br>
+            <a class="butam plus" href="Login">
+                <i class="fa fa-arrow-up elo" aria-hidden="true"></i>
+            </a></br>
+        </nav>
+        <section>
+            @using (Html.BeginForm("Account", "FitBuddy", FormMethod.Post))
+            {
+                <input class="Textfield mt-5 mb-4 mx-auto" type="text" name="Limit" placeholder="Enter your limit" />
+                <input class="Fromb my-4 p-1 mx-auto" type="submit" value="Update" />
+            }
+        </section>
+
+        <footer class="mt-5">
+            <a href="PersonalData"><button type="button" class="btn btn-success btn-lg btn-block mb-4">Personal Data</button></a>
+            <a href="EmailChange"><button type="button" class="btn btn-primary btn-lg btn-block mb-4">Change E-mail</button></a>
+            <a href="PasswordChange"><button type="button" class="btn btn-warning btn-lg btn-block mb-4">Change Password</button></a>
+            <a href="AccountDelete"><button type="button" class="btn btn-danger btn-lg btn-block">Delete Account</button></a>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+<script src="script.js"></script>
+
+</html>

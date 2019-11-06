@@ -9,7 +9,11 @@ namespace FitBuddy.DAL
 {
     public class ProductsContext : DbContext
     {
-        public ProductsContext() : base("Data Source=DESKTOP-9TVPAS9\\SQLEXPRESS01;Initial Catalog=FitBuddy;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework")
+        public ProductsContext() : base("Data Source=DESKTOP-9TVPAS9\\" +
+            "SQLEXPRESS01;Initial Catalog" +
+            "=FitBuddy;Integrated " +
+            "Security=True;MultipleActiveResu" +
+            "ltSets=True;Application Name=EntityFramework")
         {
 
         }

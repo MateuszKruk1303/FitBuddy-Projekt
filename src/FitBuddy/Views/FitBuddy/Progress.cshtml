@@ -1,7 +1,8 @@
-﻿@model FitBuddy.Models.Product
+﻿@model  IEnumerable<FitBuddy.Models.UserProgress>
 
 @{
     Layout = null;
+
 }
 
 
@@ -19,7 +20,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/Styles/stylescale.css">
+    <link rel="stylesheet" href="~/Styles/stylehistory.css">
     <title>Document</title>
 </head>
 
@@ -27,6 +28,7 @@
     <header>
         <a href="Index"><img id="icon" src="~/Styles/icon.png"></a>
     </header>
+
 
     @if (ViewBag.username != null)
     {
@@ -70,44 +72,57 @@
             <i class="fa fa-arrow-up elo" aria-hidden="true"></i>
         </a></br>
     </nav>
-    <section>
-        @using (Html.BeginForm("Scale", "FitBuddy", FormMethod.Post))
-        {
-            <div class="formik">
-                <input class="Textfield" type="text" name="Pronam" />
-                <input class="Fromb" type="submit" value="SELECT" />
-            </div>
-            <!--<span class="display">@Html.DisplayFor(m => m)</span>-->
-            <!-- <div class="display">
-                @Html.DisplayFor(model => model.Name)
-                @Html.DisplayFor(model => model.Kcal)
-                @Html.DisplayFor(model => model.Protein)
-                @Html.DisplayFor(model => model.Carb)
-                @Html.DisplayFor(model => model.Fats)
-            </div>-->
 
-            <table class="table table-borderless table-dark desktop">
-                <thead>
-                    <tr>
-                        <th scope="col">Product</th>
-                        <th scope="col">Calories</th>
-                        <th scope="col">Protein</th>
-                        <th scope="col">Carbohydrates</th>
-                        <th scope="col">Fats</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">@Html.DisplayFor(model => model.Name)</th>
-                        <td>@Html.DisplayFor(model => model.Kcal)</td>
-                        <td>@Html.DisplayFor(model => model.Protein)</td>
-                        <td>@Html.DisplayFor(model => model.Carb)</td>
-                        <td>@Html.DisplayFor(model => model.Fats)</td>
-                    </tr>
-                </tbody>
-            </table>
 
-            <table class="table table-borderless table-dark mobile">
+
+    <section style="height:40vh;">
+
+        <table class="table table-borderless table-dark desktop">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Weigh</th>
+                    <th scope="col">BMI</th>
+                    <th scope="col">BMR</th>
+                    <th scope="col">waist</th>
+                    <th scope="col">arm</th>
+                    <th scope="col">chest</th>
+                    <th scope="col">thigh</th>
+                    <th scope="col">calf</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    try
+                    {
+                        foreach (var item in Model)
+                        {
+
+                <tr>
+                    <th scope="row">@Html.DisplayFor(model => item.Date)</th>
+                    <td>@Html.DisplayFor(model => item.Weight)</td>
+                    <td>@Html.DisplayFor(model => item.BMI)</td>
+                    <td>@Html.DisplayFor(model => item.Limit)</td>
+                    <td>@Html.DisplayFor(model => item.waist)</td>
+                    <td>@Html.DisplayFor(model => item.arm)</td>
+                    <td>@Html.DisplayFor(model => item.chest)</td>
+                    <td>@Html.DisplayFor(model => item.thigh)</td>
+                    <td>@Html.DisplayFor(model => item.calf)</td>
+
+                </tr>
+                        }
+                    }
+                    catch
+                    {
+
+                    }
+                }
+
+
+            </tbody>
+        </table>
+        @*<table class="table table-borderless table-dark mobile">
                 <thead>
                     <tr>
                         <th scope="col">Product</th>
@@ -133,17 +148,21 @@
                         <td>@Html.DisplayFor(model => model.Fats)</td>
                     </tr>
                 </tbody>
-            </table>
+            </table>*@
 
+        @using (Html.BeginForm("History", "FitBuddy", FormMethod.Post))
+        {
+            <input class="btn btn-warning btn-lg mx-auto mt-5" type="submit" value="Clear Hisotry">
         }
-    </section>
 
-    <footer>@ViewBag.existing</footer>
+
+    </section>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-            <script src="script.js"></script>
 
-            </html>
+</body>
+<script src="script.js"></script>
+
+</html>

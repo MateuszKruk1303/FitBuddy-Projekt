@@ -105,16 +105,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Logo.png" />
-    <Content Include="Models\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -130,6 +120,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\MainPage.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\scriptindex.js" />
     <Content Include="Styles\bckgr 2.jpg" />
     <Content Include="Styles\bckgr.jpg" />
     <Content Include="Styles\bckgr3.jpg" />
@@ -137,69 +128,54 @@
     <Content Include="Styles\icon.png" />
     <Content Include="Styles\Logo.png" />
     <Content Include="Styles\MainPage.css" />
+    <Content Include="Styles\styleaccount.css" />
     <Content Include="Styles\styleadd.css" />
+    <Content Include="Styles\stylehistory.css" />
     <Content Include="Styles\styleindex.css" />
     <Content Include="Styles\stylelogin.css" />
     <Content Include="Styles\stylescale.css" />
     <Content Include="Styles\stylesignup.css" />
+    <Content Include="Styles\stylewelcome.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\FitBuddyController.cs" />
+    <Compile Include="DAL\ProdHistoryContext.cs" />
     <Compile Include="DAL\ProductsContext.cs" />
     <Compile Include="DAL\UserContext.cs" />
+    <Compile Include="DAL\UserProgressContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ProdHistory.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\ProdHisotry.cs" />
     <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\Products.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\users.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\UserProgress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <Content Include="Views\web.config">
+      <SubType>Designer</SubType>
     </Content>
     <None Include="packages.config" />
-    <Content Include="Views\FitBuddy\Indexxx.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\FitBuddy\Zwrot.cshtml" />
     <Content Include="Views\FitBuddy\index.cshtml" />
     <Content Include="Views\FitBuddy\Scale.cshtml" />
     <Content Include="Views\FitBuddy\Add.cshtml" />
     <Content Include="Views\FitBuddy\Login.cshtml" />
     <Content Include="Views\FitBuddy\Signup.cshtml" />
+    <Content Include="Views\FitBuddy\Welcome.cshtml" />
+    <Content Include="Views\FitBuddy\Logout.cshtml" />
+    <Content Include="Views\FitBuddy\History.cshtml" />
+    <Content Include="Views\FitBuddy\Account.cshtml" />
+    <Content Include="Views\FitBuddy\EmailChange.cshtml" />
+    <Content Include="Views\FitBuddy\PasswordChange.cshtml" />
+    <Content Include="Views\FitBuddy\AccountDelete.cshtml" />
+    <Content Include="Views\FitBuddy\PersonalData.cshtml" />
+    <Content Include="Views\FitBuddy\Progress.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
