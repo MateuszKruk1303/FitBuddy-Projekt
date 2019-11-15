@@ -13,70 +13,288 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
           integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="~/Styles/styleindex.css">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Audiowide|Nova+Square|Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Changa|Comfortaa|M+PLUS+1p|PT+Mono|Source+Code+Pro|Turret+Road&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Exo+2|Orbitron|Prompt|Syncopate&display=swap" rel="stylesheet">
+
+
+
     <title>Document</title>
 </head>
 
 <body>
-    <header>
-        <a href="Index"><img id="icon" src="~/Styles/icon.png"></a>
-    </header>
+    @*<header>
+            <a href="Index"><img id="icon" src="~/Styles/icon.png"></a>
+        </header>*@
+    @*@if (ViewBag.username != null)
+        {
+            <h4 class="fixed-top text-right text-info help ">Hello @ViewBag.username</h4>
+
+            <div class="dropdown fixed-top">
+                <button class="btn btn-secondary text-light btn-lg" data-toggle="dropdown" type="button"><i class="fas fa-bars"></i></button>
+                <div class="dropdown-menu">
+                    <a href="Logout" class="dropdown-item">Log out</a>
+                    <a href="History" class="dropdown-item">History</a>
+                    <a href="Account" class="dropdown-item">Account</a>
+                    <a href="Progress" class="dropdown-item">Progress</a>
+
+                </div>
+            </div>
+
+        }*@
+    @*<header id="twojstary">
+            <a id="dupa"></a>
+        </header>*@
     @if (ViewBag.username != null)
     {
-        <h4 class="fixed-top text-right text-info help ">Hello @ViewBag.username</h4>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top desk" style="font-family: 'Share Tech Mono', monospace;">
+            <div class="container">
+                <a class="navbar-brand" href="Index">Hello @ViewBag.username</a>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="Progress">Progress</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="Scale">Scale</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="Add">Add product</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="History">Product History</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="BMRcalc">BMR calculator</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link text-success" href="Account">Account</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link text-danger" href="Logout">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-        <div class="dropdown fixed-top">
-            <button class="btn btn-secondary text-light btn-lg" data-toggle="dropdown" type="button"><i class="fas fa-bars"></i></button>
-            <div class="dropdown-menu">
-                <a href="Logout" class="dropdown-item">Log out</a>
-                <a href="History" class="dropdown-item">History</a>
-                <a href="Account" class="dropdown-item">Account</a>
-                <a href="Progress" class="dropdown-item">Progress</a>
+        <nav class="navbar navbar-dark bg-dark sticky-top mob">
+
+            <a class="navbar-brand" href="Index">Navbar</a>
+
+            <!-- Collapse button -->
+            <button class="navbar-toggler toggler-example ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+                    aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="dark-blue-text ">
+                    <i class="fas fa-bars fa-1x"></i>
+                </span>
+            </button>
+
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+
+                <!-- Links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="Progress">Progress</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="Scale">Scale</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="Add">Add product</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="History">Product History</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="BMRcalc">BMR calculator</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link text-success" href="Account">Account</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link text-danger" href="Logout">Logout</a>
+                    </li>
+                </ul>
+                <!-- Links -->
+
+            </div>
+
+        </nav>
+
+
+
+    }
+    else
+    {
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top" style="font-family: 'Share Tech Mono', monospace;">
+            <div class="container">
+                <a class="navbar-brand" href="Index">Home</a>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item mr-4">
+                            <a class="nav-link active  text-success" href="Login">Login</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link active" href="Signup">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Scale">Scale</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+    }
+
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" style="">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a id="imgcont"><img id="icon" class="slid" src="~/Styles/icon.png"></a>
+                <h1 class="slid main">Scale Your Food</h1>
+                <h1 class="slid sub">You must know what do you eat</h1>
+                <img class="d-block w-100 h-100" src="~/Styles/Slider1.jpg" alt="First slide">
+
+            </div>
+            <div class="carousel-item">
+                <a id="imgcont"><img id="icon" class="slid" src="~/Styles/icon.png"></a>
+                <h1 class="slid main">Observe Your Progress</h1>
+                <h1 class="slid sub">Update your progress and look at the charts</h1>
+                <img class="d-block w-100" src="~/Styles/Slider3.jpg" alt="Third slide">
+            </div>
+            <div class="carousel-item">
+                <a id="imgcont"><img id="icon" class="slid" src="~/Styles/icon.png"></a>
+                <h1 class="slid main">Stay Fit</h1>
+                <h1 class="slid sub">Calculation is a key</h1>
+                <img class="d-block w-100" src="~/Styles/Slider2.jpg" alt="Second slide">
 
             </div>
         </div>
+    </div>
+    <section id="top" class="desktop">
+        <div class="sub1">
+            <h1>Getting Started</h1>
+        </div>
+        <div class="divwith3">
+            <div class="subdiv progres">
+                <a id="scroll1" href="#prog" style="text-decoration: none;">
+                    <div class="bigcont">
+                        <i class="fas fa-chart-line"></i><br />
+                        Progress system
+                    </div>
+                
+                <div class="smallcont">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </div>
+                    </a>
 
-    }
-    <nav class="normal">
-        <a class="buta border-bottom border-dark" href="Scale">
-            <i class="fa fa-balance-scale elo" aria-hidden="true"></i>
-        </a>
-        <a class="buta border-bottom border-dark" href="Add">
-            <i class="fa fa-plus elo" aria-hidden="true"></i>
-        </a>
-        <a class="buta border-bottom border-dark" href="Signup">
-            <i class="fa fa-user-plus elo" aria-hidden="true"></i>
-        </a>
-        <a class="buta border-bottom border-dark" href="Login">
-            <i class="fa fa-arrow-up elo" aria-hidden="true"></i>
-        </a>
-    </nav>
-    <nav class="mobile">
-        <a class="butam" href="Scale">
-            <i class="fa fa-balance-scale elo" aria-hidden="true"></i>
-        </a><br>
-        <a class="butam plus" href="Add">
-            <i class="fa fa-plus elo" aria-hidden="true"></i>
-        </a><br>
-        <a class="butam" href="Signup">
-            <i class="fa fa-user-plus elo" aria-hidden="true"></i>
-        </a><br>
-        <a class="butam plus" href="Login">
-            <i class="fa fa-arrow-up elo" aria-hidden="true"></i>
-        </a><br>
-    </nav>
-    <section>
-        <p class="weltext welcome">WELCOME</p>
-        @if(ViewBag.username != null)
-        {
-        <p class="weltext desc">@ViewBag.username</p>
-        }
-        <p class="weltext desc"> LET'S CALCULATE YOUR FOOD!</p>
+            </div>
+            <div class="subdiv calories">
+                <a id="scroll2" href="#calc" style="text-decoration: none;">
+                    <div class="bigcont">
+                        <i class="fas fa-pizza-slice"></i> <br />
+                        Calculating Food
+                    </div>
+                    <div class="smallcont">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                </a>
+
+            </div>
+
+            <div class="subdiv scale">
+                <a id="scroll3" href="#scale" style="text-decoration: none;">
+                    <div class="bigcont">
+                        <i class="fas fa-balance-scale"></i> <br />
+                        Scale
+                    </div>
+                    <div class="smallcont">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                </a>
+
+            </div>
+        </div>
     </section>
+    <div id="prog" class="display-1">
+
+        <a id="scrolltop1" href="#top" >
+            1
+        </a>
+
+    </div>
+    <div id="calc" class="display-1">
+
+        <a id="scrolltop2" href="#top" >
+            2
+        </a>
+
+    </div>
+    <div id="scale" class="display-1">
+
+        <a id="scrolltop3" href="#top">
+            3
+        </a>
+
+    </div>
+
+    @*<nav class="normal">
+            <a class="buta border-bottom border-dark" href="Scale">
+                <i class="fa fa-balance-scale elo" aria-hidden="true"></i>
+            </a>
+            <a class="buta border-bottom border-dark" href="Add">
+                <i class="fa fa-plus elo" aria-hidden="true"></i>
+            </a>
+            <a class="buta border-bottom border-dark" href="Signup">
+                <i class="fa fa-user-plus elo" aria-hidden="true"></i>
+            </a>
+            <a class="buta border-bottom border-dark" href="Login">
+                <i class="fa fa-arrow-up elo" aria-hidden="true"></i>
+            </a>
+        </nav>
+        <nav class="mobile">
+            <a class="butam" href="Scale">
+                <i class="fa fa-balance-scale elo" aria-hidden="true"></i>
+            </a><br>
+            <a class="butam plus" href="Add">
+                <i class="fa fa-plus elo" aria-hidden="true"></i>
+            </a><br>
+            <a class="butam" href="Signup">
+                <i class="fa fa-user-plus elo" aria-hidden="true"></i>
+            </a><br>
+            <a class="butam plus" href="Login">
+                <i class="fa fa-arrow-up elo" aria-hidden="true"></i>
+            </a><br>
+        </nav>*@
+    @*<section>
+            <p class="weltext welcome">WELCOME</p>
+            @if (ViewBag.username != null)
+            {
+                <p class="weltext desc">@ViewBag.username</p>
+            }
+            <p class="weltext desc"> LET'S CALCULATE YOUR FOOD!</p>
+        </section>*@
     <footer></footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

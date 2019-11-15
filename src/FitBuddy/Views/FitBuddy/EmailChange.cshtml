@@ -20,57 +20,126 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/Styles/styleaccount.css">
+    <link rel="stylesheet" href="~/Styles/Navbarstyle.css" />
     <title>Document</title>
 </head>
 
 <body>
+    @if (ViewBag.username != null)
+    {
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top desk" style="font-family: 'Share Tech Mono', monospace;">
+            <div class="container">
+                <a class="navbar-brand" href="Index">Hello @ViewBag.username</a>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="Progress">Progress</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="Scale">Scale</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="Add">Add product</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="History">Product History</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="BMRcalc">BMR calculator</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link text-success" href="Account">Account</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link text-danger" href="Logout">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <nav class="navbar navbar-dark bg-dark sticky-top mob">
+
+            <a class="navbar-brand" href="Index">@ViewBag.username</a>
+
+            <!-- Collapse button -->
+            <button class="navbar-toggler toggler-example ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+                    aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="dark-blue-text ">
+                    <i class="fas fa-bars fa-1x"></i>
+                </span>
+            </button>
+
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+
+                <!-- Links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="Progress">Progress</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="Scale">Scale</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="Add">Add product</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="History">Product History</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="BMRcalc">BMR calculator</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link text-success" href="Account">Account</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link text-danger" href="Logout">Logout</a>
+                    </li>
+                </ul>
+                <!-- Links -->
+
+            </div>
+
+        </nav>
+
+
+
+    }
+    else
+    {
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top" style="font-family: 'Share Tech Mono', monospace;">
+            <div class="container">
+                <a class="navbar-brand" href="Index">Home</a>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item mr-4">
+                            <a class="nav-link active  text-success" href="Login">Login</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link active" href="Signup">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Scale">Scale</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+    }
+
     <header>
         <a href="Index"><img id="icon" src="~/Styles/icon.png"></a>
     </header>
 
-
-    @if (ViewBag.username != null)
-    {
-
-        <div class="dropdown fixed-top">
-            <button class="btn btn-secondary text-light btn-lg" data-toggle="dropdown" type="button"><i class="fas fa-bars"></i></button>
-            <div class="dropdown-menu">
-                <a href="Logout" class="dropdown-item">Log out</a>
-                <a href="History" class="dropdown-item">History</a>
-                <a href="Account" class="dropdown-item">Account</a>
-            </div>
-        </div>
-
-    }
-
-    <nav class="normal">
-        <a class="buta" href="Scale">
-            <i class="fa fa-balance-scale elo" aria-hidden="true"></i>
-        </a>
-        <a class="buta plus" href="Add">
-            <i class="fa fa-plus elo" aria-hidden="true"></i>
-        </a>
-        <a class="buta" href="Signup">
-            <i class="fa fa-user-plus elo" aria-hidden="true"></i>
-        </a>
-        <a class="buta plus" href="Login">
-            <i class="fa fa-arrow-up elo" aria-hidden="true"></i>
-        </a>
-    </nav>
-    <nav class="mobile">
-        <a class="butam" href="Scale">
-            <i class="fa fa-balance-scale elo" aria-hidden="true"></i>
-        </a></br>
-        <a class="butam plus" href="Add">
-            <i class="fa fa-plus elo" aria-hidden="true"></i>
-        </a></br>
-        <a class="butam" href="Signup">
-            <i class="fa fa-user-plus elo" aria-hidden="true"></i>
-        </a></br>
-        <a class="butam plus" href="Login">
-            <i class="fa fa-arrow-up elo" aria-hidden="true"></i>
-        </a></br>
-    </nav>
     <section>
         @using (Html.BeginForm("EmailChange", "FitBuddy", FormMethod.Post))
         {

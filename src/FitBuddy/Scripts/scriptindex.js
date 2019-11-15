@@ -1,13 +1,13 @@
-﻿let a = document.querySelector(".welcome");
-let b = document.querySelector(".desc");
-b.style.top = "40%";
+﻿let a = document.querySelectorAll("h1.slid.main")
+let b = document.querySelectorAll("h1.slid.sub")
 let flag = 0;
 let i = 0;
-let j = 40;
 
 const funk = function() {
 
-    a.style.opacity = i;
+    a[0].style.opacity = i;
+    a[1].style.opacity = i;
+    a[2].style.opacity = i;
     i += 0.01;
 
     if (i >= 1) {
@@ -17,37 +17,84 @@ const funk = function() {
 
         const funk2 = function () {
 
-            b.style.opacity = i;
+            b[0].style.opacity = i;
+            b[1].style.opacity = i;
+            b[2].style.opacity = i;
             i += 0.01;
+
             if (i >= 1) {
 
-                console.log("auuu");
+                i = 0;
                 clearInterval(int2);
             }
-        }
-
-        const funk3 = function () {
-
-            b.style.top = `${j}` + "%";
-            j-=2;
-            if (j <= 12) {
-
-                clearInterval(int3);
-
-            }
 
         }
 
-        let int2 = setInterval(funk2, 10);
-        let int3 = setInterval(funk3, 20);
-        
-        
+        var int2 = setInterval(funk2, 10);
+       
     }
 
 }
 
 var int1 = setInterval(funk, 10);
 
+document.querySelectorAll('#scroll1[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
 
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
 
+document.querySelectorAll('#scroll2[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
 
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+document.querySelectorAll('#scroll3[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+document.querySelectorAll('#scrolltop1[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+document.querySelectorAll('#scrolltop2[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+document.querySelectorAll('#scrolltop3[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});

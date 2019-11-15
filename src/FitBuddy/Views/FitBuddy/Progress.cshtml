@@ -21,107 +21,131 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/Styles/stylehistory.css">
+    <link rel="stylesheet" href="~/Styles/Navbarstyle.css" />
     <title>Document</title>
 </head>
 
 <body>
+    @if (ViewBag.username != null)
+    {
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top desk" style="font-family: 'Share Tech Mono', monospace;">
+            <div class="container">
+                <a class="navbar-brand" href="Index">Hello @ViewBag.username</a>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="Progress">Progress</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="Scale">Scale</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="Add">Add product</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="History">Product History</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="BMRcalc">BMR calculator</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link text-success" href="Account">Account</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link text-danger" href="Logout">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <nav class="navbar navbar-dark bg-dark sticky-top mob">
+
+            <a class="navbar-brand" href="Index">@ViewBag.username</a>
+
+            <!-- Collapse button -->
+            <button class="navbar-toggler toggler-example ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+                    aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="dark-blue-text ">
+                    <i class="fas fa-bars fa-1x"></i>
+                </span>
+            </button>
+
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+
+                <!-- Links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="Progress">Progress</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="Scale">Scale</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="Add">Add product</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="History">Product History</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="BMRcalc">BMR calculator</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link text-success" href="Account">Account</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link text-danger" href="Logout">Logout</a>
+                    </li>
+                </ul>
+                <!-- Links -->
+
+            </div>
+
+        </nav>
+
+
+
+    }
+    else
+    {
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top" style="font-family: 'Share Tech Mono', monospace;">
+            <div class="container">
+                <a class="navbar-brand" href="Index">Home</a>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item mr-4">
+                            <a class="nav-link active  text-success" href="Login">Login</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link active" href="Signup">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Scale">Scale</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+    }
+
     <header>
         <a href="Index"><img id="icon" src="~/Styles/icon.png"></a>
     </header>
 
 
-    @if (ViewBag.username != null)
-    {
-
-        <div class="dropdown fixed-top">
-            <button class="btn btn-secondary text-light btn-lg" data-toggle="dropdown" type="button"><i class="fas fa-bars"></i></button>
-            <div class="dropdown-menu">
-                <a href="Logout" class="dropdown-item">Log out</a>
-                <a href="History" class="dropdown-item">History</a>
-                <a href="Account" class="dropdown-item">Account</a>
-            </div>
-        </div>
-
-    }
-
-    <nav class="normal">
-        <a class="buta" href="Scale">
-            <i class="fa fa-balance-scale elo" aria-hidden="true"></i>
-        </a>
-        <a class="buta plus" href="Add">
-            <i class="fa fa-plus elo" aria-hidden="true"></i>
-        </a>
-        <a class="buta" href="Signup">
-            <i class="fa fa-user-plus elo" aria-hidden="true"></i>
-        </a>
-        <a class="buta plus" href="Login">
-            <i class="fa fa-arrow-up elo" aria-hidden="true"></i>
-        </a>
-    </nav>
-    <nav class="mobile">
-        <a class="butam" href="Scale">
-            <i class="fa fa-balance-scale elo" aria-hidden="true"></i>
-        </a></br>
-        <a class="butam plus" href="Add">
-            <i class="fa fa-plus elo" aria-hidden="true"></i>
-        </a></br>
-        <a class="butam" href="Signup">
-            <i class="fa fa-user-plus elo" aria-hidden="true"></i>
-        </a></br>
-        <a class="butam plus" href="Login">
-            <i class="fa fa-arrow-up elo" aria-hidden="true"></i>
-        </a></br>
-    </nav>
-
-
 
     <section style="height:40vh;">
 
-        <table class="table table-borderless table-dark desktop">
-            <thead>
-                <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Weigh</th>
-                    <th scope="col">BMI</th>
-                    <th scope="col">BMR</th>
-                    <th scope="col">waist</th>
-                    <th scope="col">arm</th>
-                    <th scope="col">chest</th>
-                    <th scope="col">thigh</th>
-                    <th scope="col">calf</th>
 
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                    try
-                    {
-                        foreach (var item in Model)
-                        {
-
-                <tr>
-                    <th scope="row">@Html.DisplayFor(model => item.Date)</th>
-                    <td>@Html.DisplayFor(model => item.Weight)</td>
-                    <td>@Html.DisplayFor(model => item.BMI)</td>
-                    <td>@Html.DisplayFor(model => item.Limit)</td>
-                    <td>@Html.DisplayFor(model => item.waist)</td>
-                    <td>@Html.DisplayFor(model => item.arm)</td>
-                    <td>@Html.DisplayFor(model => item.chest)</td>
-                    <td>@Html.DisplayFor(model => item.thigh)</td>
-                    <td>@Html.DisplayFor(model => item.calf)</td>
-
-                </tr>
-                        }
-                    }
-                    catch
-                    {
-
-                    }
-                }
-
-
-            </tbody>
-        </table>
         @*<table class="table table-borderless table-dark mobile">
                 <thead>
                     <tr>
@@ -149,14 +173,543 @@
                     </tr>
                 </tbody>
             </table>*@
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <canvas id="line-chart1" style="background-color: rgba(204, 255, 51, 0);" width="300" height="170"></canvas>
+                </div>
+                <div class="carousel-item">
+                    <canvas id="luna" style="background-color: rgba(204, 255, 51, 0);" width="300" height="170"></canvas>
+                </div>
+                <div class="carousel-item">
+                    <canvas id="bombas" style="background-color: rgba(204, 255, 51, 0);" width="300" height="170"></canvas>
+                </div>
+                <div class="carousel-item">
+                    <canvas id="chest" style="background-color: rgba(204, 255, 51, 0);" width="300" height="170"></canvas>
+                </div>
+                <div class="carousel-item">
+                    <canvas id="bmi" style="background-color: rgba(204, 255, 51, 0);" width="300" height="170"></canvas>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
 
-        @using (Html.BeginForm("History", "FitBuddy", FormMethod.Post))
-        {
-            <input class="btn btn-warning btn-lg mx-auto mt-5" type="submit" value="Clear Hisotry">
-        }
+        <table class="table table-borderless table-dark desktop my-5">
+            <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Measure Number</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var i = 1;
+
+                    try
+                    {
+                        foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <th scope="row">@Html.DisplayFor(model => item.Date.Year)-@Html.DisplayFor(model => item.Date.Month)-@Html.DisplayFor(model => item.Date.Day)</th>
+                                <td>@i .</td>
+                            </tr>
+
+                            i++;
+                        }
+                    }
+                    catch
+                    {
+
+                    }
+                }
+
+
+            </tbody>
+        </table>
+
+
+
 
 
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script>
+        var ch = document.getElementById("line-chart1").getContext("2d");
+
+            let Biceps = new Chart(ch, {
+            type: 'line',
+            data: {
+            //labels: ['1st week', '2nd week', '3rd week', '4rd week'],
+            labels: ['1st measure', '2nd measure', '3rd measure', '4rd measure', '5th measure'],
+                datasets: [{
+                data: [0,0,0,0,0],
+                    label: "Weight",
+                    borderColor: "#ccff33",
+                    fill: "start",
+                    fillColor: "yellow",
+                    pointRadius: 4,
+                    pointHoverRadius: 4,
+                    pointBorderWidth: 1,
+                    pointHoverBorderWidth: 1,
+                    pointHoverBorderColor: "rgb(51, 255, 51)",
+                    pointBorderColor: "rgb(51, 255, 51)",
+                    backgroundColor: "rgb(77, 77, 77)",
+
+
+
+                }
+
+                ]
+            },
+
+            //datasets.data[0] = 3,
+
+                options: {
+                    title: {
+                        display: true,
+                        text: "Weight progress chart",
+                        fontColor: "#ffffff",
+                        fontSize: 20,
+                    },
+
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                fontColor: "#ffffff",
+                                fontStyle: "bold",
+                                //maxTicksLimit: 5,
+                                padding: 20
+                            },
+                            gridLines: {
+                                drawTicks: true,
+                                display: true,
+                                color: "#cccccc"
+                            }
+                        }],
+                        xAxes: [{
+
+                            ticks: {
+                                padding: 20,
+                                fontColor: "#ffffff",
+                                fontStyle: "bold"
+                            },
+                            gridLines: {
+                                drawTicks: true,
+                                display: true,
+                                color: "#cccccc"
+                            }
+                        }]
+                    }
+                }
+        });
+
+
+        const up = function () {
+
+            let i = 0;
+
+
+
+                 @foreach(var item in Model)
+                 {
+                     @:Biceps.data.datasets[0].data[i] = @item.Weight;
+                     @:Biceps.data.labels[i] = i+1 + "."
+                     @:i++;
+                 }
+
+            Biceps.update();
+
+        }
+
+        up();
+
+
+    </script>
+
+    <script>
+        var ch = document.getElementById("luna").getContext("2d");
+
+            let Bicepss = new Chart(ch, {
+            type: 'line',
+            data: {
+            //labels: ['1st week', '2nd week', '3rd week', '4rd week'],
+            labels: ['1st measure', '2nd measure', '3rd measure', '4rd measure', '5th measure'],
+                datasets: [{
+                data: [0,0,0,0,0],
+                    label: "Waist",
+                    borderColor: "#ccff33",
+                    fill: "start",
+                    fillColor: "yellow",
+                    pointRadius: 4,
+                    pointHoverRadius: 4,
+                    pointBorderWidth: 1,
+                    pointHoverBorderWidth: 1,
+                    pointHoverBorderColor: "rgb(51, 255, 51)",
+                    pointBorderColor: "rgb(51, 255, 51)",
+                    backgroundColor: "rgb(77, 77, 77)",
+
+
+
+                }
+
+                ]
+            },
+
+            //datasets.data[0] = 3,
+
+                options: {
+                    title: {
+                        display: true,
+                        text: "Waist progress chart",
+                        fontColor: "#ffffff",
+                        fontSize: 20,
+                    },
+
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                fontColor: "#ffffff",
+                                fontStyle: "bold",
+                                //maxTicksLimit: 5,
+                                padding: 20
+                            },
+                            gridLines: {
+                                drawTicks: true,
+                                display: true,
+                                color: "#cccccc"
+                            }
+                        }],
+                        xAxes: [{
+
+                            ticks: {
+                                padding: 20,
+                                fontColor: "#ffffff",
+                                fontStyle: "bold"
+                            },
+                            gridLines: {
+                                drawTicks: true,
+                                display: true,
+                                color: "#cccccc"
+                            }
+                        }]
+                    }
+                }
+        });
+
+
+        const up2 = function () {
+
+            let i = 0;
+
+
+
+                 @foreach(var item in Model)
+                 {
+                     @:Bicepss.data.datasets[0].data[i] = @item.waist;
+                     @:Bicepss.data.labels[i] = i+1 + "."
+                     @:i++;
+                 }
+
+            Bicepss.update();
+
+        }
+
+        up2();
+
+
+    </script>
+
+    <script>
+        var ch3 = document.getElementById("bombas").getContext("2d");
+
+            let Bicepsss = new Chart(ch3, {
+            type: 'line',
+            data: {
+            //labels: ['1st week', '2nd week', '3rd week', '4rd week'],
+            labels: ['1st measure', '2nd measure', '3rd measure', '4rd measure', '5th measure'],
+                datasets: [{
+                data: [0,0,0,0,0],
+                    label: "Arm",
+                    borderColor: "#ccff33",
+                    fill: "start",
+                    fillColor: "yellow",
+                    pointRadius: 4,
+                    pointHoverRadius: 4,
+                    pointBorderWidth: 1,
+                    pointHoverBorderWidth: 1,
+                    pointHoverBorderColor: "rgb(51, 255, 51)",
+                    pointBorderColor: "rgb(51, 255, 51)",
+                    backgroundColor: "rgb(77, 77, 77)",
+
+
+
+                }
+
+                ]
+            },
+
+            //datasets.data[0] = 3,
+
+                options: {
+                    title: {
+                        display: true,
+                        text: "Arm progress chart",
+                        fontColor: "#ffffff",
+                        fontSize: 20,
+                    },
+
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                fontColor: "#ffffff",
+                                fontStyle: "bold",
+                                //maxTicksLimit: 5,
+                                padding: 20
+                            },
+                            gridLines: {
+                                drawTicks: true,
+                                display: true,
+                                color: "#cccccc"
+                            }
+                        }],
+                        xAxes: [{
+
+                            ticks: {
+                                padding: 20,
+                                fontColor: "#ffffff",
+                                fontStyle: "bold"
+                            },
+                            gridLines: {
+                                drawTicks: true,
+                                display: true,
+                                color: "#cccccc"
+                            }
+                        }]
+                    }
+                }
+        });
+
+
+        const up3 = function () {
+
+            let i = 0;
+
+
+
+                 @foreach(var item in Model)
+                 {
+                     @:Bicepsss.data.datasets[0].data[i] = @item.arm;
+                     @:Bicepsss.data.labels[i] = i+1 + "."
+                     @:i++;
+                 }
+
+            Bicepsss.update();
+
+        }
+
+        up3();
+
+            @*@foreach (var item in Model)
+            {
+                Biceps.data.datasets[0].data[i] = 0;
+
+            }*@
+
+
+    </script>
+
+    <script>
+          var ch4 = document.getElementById("chest").getContext("2d");
+
+            let Bi  = new Chart(ch4, {
+            type: 'line',
+            data: {
+            //labels: ['1st week', '2nd week', '3rd week', '4rd week'],
+            labels: ['1st measure', '2nd measure', '3rd measure', '4rd measure', '5th measure'],
+                datasets: [{
+                data: [0,0,0,0,0],
+                    label: "Chest",
+                    borderColor: "#ccff33",
+                    fill: "start",
+                    fillColor: "yellow",
+                    pointRadius: 4,
+                    pointHoverRadius: 4,
+                    pointBorderWidth: 1,
+                    pointHoverBorderWidth: 1,
+                    pointHoverBorderColor: "rgb(51, 255, 51)",
+                    pointBorderColor: "rgb(51, 255, 51)",
+                    backgroundColor: "rgb(77, 77, 77)",
+
+
+
+                }
+
+                ]
+            },
+
+            //datasets.data[0] = 3,
+
+                options: {
+                    title: {
+                        display: true,
+                        text: "Chest progress chart",
+                        fontColor: "#ffffff",
+                        fontSize: 20,
+                    },
+
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                fontColor: "#ffffff",
+                                fontStyle: "bold",
+                                //maxTicksLimit: 5,
+                                padding: 20
+                            },
+                            gridLines: {
+                                drawTicks: true,
+                                display: true,
+                                color: "#cccccc"
+                            }
+                        }],
+                        xAxes: [{
+
+                            ticks: {
+                                padding: 20,
+                                fontColor: "#ffffff",
+                                fontStyle: "bold"
+                            },
+                            gridLines: {
+                                drawTicks: true,
+                                display: true,
+                                color: "#cccccc"
+                            }
+                        }]
+                    }
+                }
+        });
+
+
+        const up4 = function () {
+
+            let i = 0;
+
+
+
+                 @foreach(var item in Model)
+                 {
+                     @:Bi.data.datasets[0].data[i] = @item.chest;
+                     @:Bi.data.labels[i] = i+1 + "."
+                     @:i++;
+                 }
+
+            Bi.update();
+
+        }
+
+        up4();
+
+    </script>
+    <script>
+        var ch = document.getElementById("bmi").getContext("2d");
+
+            let bmi = new Chart(ch, {
+            type: 'line',
+            data: {
+            //labels: ['1st week', '2nd week', '3rd week', '4rd week'],
+            labels: ['1st measure', '2nd measure', '3rd measure', '4rd measure', '5th measure'],
+                datasets: [{
+                data: [0,0,0,0,0],
+                    label: "BMI",
+                    borderColor: "#ccff33",
+                    fill: "start",
+                    fillColor: "yellow",
+                    pointRadius: 4,
+                    pointHoverRadius: 4,
+                    pointBorderWidth: 1,
+                    pointHoverBorderWidth: 1,
+                    pointHoverBorderColor: "rgb(51, 255, 51)",
+                    pointBorderColor: "rgb(51, 255, 51)",
+                    backgroundColor: "rgb(77, 77, 77)",
+
+
+
+                }
+
+                ]
+            },
+
+            //datasets.data[0] = 3,
+
+                options: {
+                    title: {
+                        display: true,
+                        text: "BMI progress chart",
+                        fontColor: "#ffffff",
+                        fontSize: 20,
+                    },
+
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                fontColor: "#ffffff",
+                                fontStyle: "bold",
+                                //maxTicksLimit: 5,
+                                padding: 20
+                            },
+                            gridLines: {
+                                drawTicks: true,
+                                display: true,
+                                color: "#cccccc"
+                            }
+                        }],
+                        xAxes: [{
+
+                            ticks: {
+                                padding: 20,
+                                fontColor: "#ffffff",
+                                fontStyle: "bold"
+                            },
+                            gridLines: {
+                                drawTicks: true,
+                                display: true,
+                                color: "#cccccc"
+                            }
+                        }]
+                    }
+                }
+        });
+
+
+        const up5 = function () {
+
+            let i = 0;
+
+
+
+                 @foreach(var item in Model)
+                 {
+                     @:bmi.data.datasets[0].data[i] = @item.BMI;
+                     @:bmi.data.labels[i] = i+1 + "."
+                     @:i++;
+                 }
+
+            bmi.update();
+
+        }
+
+        up5();
+
+
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

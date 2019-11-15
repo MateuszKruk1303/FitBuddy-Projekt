@@ -1,0 +1,15 @@
+﻿
+.mob {
+
+    display: none;
+}
+
+@media (max-width: 999px) {
+    .mob {
+        display: block;
+    }
+
+    .desk {
+        display: none;
+    }
+}

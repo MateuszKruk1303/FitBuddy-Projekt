@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Migrations;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using FitBuddy.DAL;
 using FitBuddy.Models;
+
 
 
 namespace FitBuddy.Controllers
@@ -25,6 +28,17 @@ namespace FitBuddy.Controllers
         public string existing;
         private static bool status = false;
         public static string username;
+        public static string rjs;
+
+        private string downloadcont()
+        {
+            string url = "https://countn.com/";
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+            StreamReader sr = new StreamReader(resp.GetResponseStream());
+            return sr.ReadToEnd();
+             
+        }
 
         public ActionResult Welcome()
         {
@@ -42,6 +56,85 @@ namespace FitBuddy.Controllers
                 return View();
             }
 
+            return View();
+        }
+
+        public ActionResult BMRcalc()
+        {
+            ViewBag.username = username;
+            ViewBag.existing = " ";
+
+            if (status == false)
+            {
+                Response.Redirect("Index");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult BMRcalc(int? ex, int? time, bool goal)
+        {
+            ViewBag.username = username;
+
+            if (status == false)
+            {
+                Response.Redirect("Index");
+            }
+            if(ex == null)
+            {
+                ViewBag.existing = "How many trainings do you do per week?";
+                return View();
+
+            }
+            if(time == null)
+            {
+                ViewBag.existing = "How much time do you spend on traning?";
+                return View();
+
+            }
+
+            User us = dbu.Users.Find(username);
+            double? prebm = 0;
+            if(us.Sex == "m")
+            {
+                prebm = (9.99 * us.Weight) + (6.25 * us.Height) - (4.92 * us.Age) + 5;
+                prebm = prebm + ((ex * time * 8)/7);
+                prebm = prebm + 500;
+                if(goal)
+                {
+                    us.Limit = (int)prebm + 300;
+                }
+                else
+                {
+                    us.Limit = (int)prebm - 300;
+                }
+
+                dbu.SaveChanges();
+
+            }
+            else if(us.Sex == "w")
+            {
+                prebm = (9.99 * us.Weight) + (6.25 * us.Height) - (4.92 * us.Age) - 161;
+                prebm = prebm + (ex * time * 8);
+                prebm = prebm + 500;
+                if (goal)
+                {
+                    us.Limit = (int)prebm + 300;
+                }
+                else
+                {
+                    us.Limit = (int)prebm - 300;
+                }
+
+                dbu.SaveChanges();
+
+            }
+            else
+            {
+               return View();
+            }
+
+            ViewBag.existing = us.Limit;
             return View();
         }
 
@@ -76,7 +169,7 @@ namespace FitBuddy.Controllers
 
         public ActionResult PersonalData(double wg = 0, int age = 0, string sex = null, int hg = 0, int waist = 0, int arm = 0, int thigh = 0, int calf = 0, int forearm = 0, int chest = 0)
         {
-
+            // We dont need default values etc. better use int? double? when we're using forms
 
             ViewBag.username = username;
 
@@ -160,13 +253,15 @@ namespace FitBuddy.Controllers
             dbu.SaveChanges();
 
             User userp = dbu.Users.Find(username);
+            //DateTime dat = new DateTime(2019, 11, 3);
 
             UserProgress progres = new UserProgress()
             {
-            Limit = userp.Limit,
-            Weight = userp.Weight,
-            BMI = userp.BMI,
-            Date = DateTime.Today,
+                Limit = userp.Limit,
+                Weight = userp.Weight,
+                BMI = userp.BMI,
+                Date = DateTime.Today.Date,
+                //Date = dat,
             waist = userp.waist,
             arm = userp.arm,
             thigh = userp.thigh,
@@ -300,6 +395,8 @@ namespace FitBuddy.Controllers
 
         public ActionResult AccountDelete()
         {
+            ViewBag.username = username;
+
             if (status == false)
             {
                 Response.Redirect("Index");
@@ -466,14 +563,19 @@ namespace FitBuddy.Controllers
         public ActionResult Scale()
         {
             ViewBag.username = username;
+            //ViewBag.rjs = downloadcont();
+
+            
+            // Product p = db.Products.Find("nullprod");
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult Scale(string pronam="")
+        public ActionResult Scale(double gram=100, string pronam="")
         {
             ViewBag.username = username;
+            ViewBag.g = gram;
 
             if (pronam == null)
             {
@@ -485,13 +587,18 @@ namespace FitBuddy.Controllers
             if(prod == null)
             {
                 ViewBag.existing = "This product is not in our database!";
-
                 return View();
 
             }
 
             if (status)
             {
+
+                ViewBag.Protein = prod.Protein;
+                ViewBag.Carbo = prod.Carb;
+                ViewBag.Fats = prod.Fats;
+
+
                 ProdHistory productt = new ProdHistory()
                 {
                     Name = prod.Name,
@@ -543,15 +650,15 @@ namespace FitBuddy.Controllers
                 ViewBag.existing = "Fail";
                 return View();
             }
-
-            if (!(pass == us.Pass))
+           
+            if (!Crypto.VerifyHashedPassword(us.Pass, pass))
             {
                 ViewBag.existing = "Fail";
                 return View();
             }
 
 
-            if (pass == us.Pass)
+            if(Crypto.VerifyHashedPassword(us.Pass, pass))
             {
                 status = true;
                 username = Nick;
@@ -586,7 +693,8 @@ namespace FitBuddy.Controllers
 
             User user = new User();
             user.Nick = Nick;
-            user.Pass = Pass;
+            var hash = Crypto.HashPassword(Pass);
+            user.Pass = hash;
             user.Email = Email;
 
             if (!ModelState.IsValid)
@@ -621,7 +729,8 @@ namespace FitBuddy.Controllers
                 user.Weight = 0;
                 user.Age = 0;
                 user.BMI = 0;
-                user.Date = DateTime.Today;
+                var DT = DateTime.Now;
+                user.Date = DT.Date;
                 user.waist = 0;
                 user.arm =  0;
                 user.thigh = 0;

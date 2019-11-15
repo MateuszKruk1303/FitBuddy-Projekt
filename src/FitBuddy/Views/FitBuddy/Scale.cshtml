@@ -9,6 +9,8 @@
 <html lang="en">
 
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -20,130 +22,378 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/Styles/stylescale.css">
+    <link rel="stylesheet" href="~/Styles/Navbarstyle.css" />
     <title>Document</title>
 </head>
 
 <body>
-    <header>
-        <a href="Index"><img id="icon" src="~/Styles/icon.png"></a>
-    </header>
-
     @if (ViewBag.username != null)
     {
-
-        <div class="dropdown fixed-top">
-            <button class="btn btn-secondary text-light btn-lg" data-toggle="dropdown" type="button"><i class="fas fa-bars"></i></button>
-            <div class="dropdown-menu">
-                <a href="Logout" class="dropdown-item">Log out</a>
-                <a href="History" class="dropdown-item">History</a>
-                <a href="Account" class="dropdown-item">Account</a>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top desk" style="font-family: 'Share Tech Mono', monospace;">
+            <div class="container">
+                <a class="navbar-brand" href="Index">Hello @ViewBag.username</a>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="Progress">Progress</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="Scale">Scale</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="Add">Add product</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="History">Product History</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="BMRcalc">BMR calculator</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link text-success" href="Account">Account</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link text-danger" href="Logout">Logout</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
+        </nav>
+
+        <nav class="navbar navbar-dark bg-dark sticky-top mob">
+
+            <a class="navbar-brand" href="Index">@ViewBag.username</a>
+
+            <!-- Collapse button -->
+            <button class="navbar-toggler toggler-example ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+                    aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="dark-blue-text ">
+                    <i class="fas fa-bars fa-1x"></i>
+                </span>
+            </button>
+
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+
+                <!-- Links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="Progress">Progress</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="Scale">Scale</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="Add">Add product</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="History">Product History</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link" href="BMRcalc">BMR calculator</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link text-success" href="Account">Account</a>
+                    </li>
+                    <li class="nav-item mr-4">
+                        <a class="nav-link text-danger" href="Logout">Logout</a>
+                    </li>
+                </ul>
+                <!-- Links -->
+
+            </div>
+
+        </nav>
+
+
+
+    }
+    else
+    {
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top" style="font-family: 'Share Tech Mono', monospace;">
+            <div class="container">
+                <a class="navbar-brand" href="Index">Home</a>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item mr-4">
+                            <a class="nav-link active  text-success" href="Login">Login</a>
+                        </li>
+                        <li class="nav-item mr-4">
+                            <a class="nav-link active" href="Signup">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Scale">Scale</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
 
     }
 
-    <nav class="normal">
-        <a class="buta" href="Scale">
-            <i class="fa fa-balance-scale elo" aria-hidden="true"></i>
-        </a>
-        <a class="buta plus" href="Add">
-            <i class="fa fa-plus elo" aria-hidden="true"></i>
-        </a>
-        <a class="buta" href="Signup">
-            <i class="fa fa-user-plus elo" aria-hidden="true"></i>
-        </a>
-        <a class="buta plus" href="Login">
-            <i class="fa fa-arrow-up elo" aria-hidden="true"></i>
-        </a>
-    </nav>
-    <nav class="mobile">
-        <a class="butam" href="Scale">
-            <i class="fa fa-balance-scale elo" aria-hidden="true"></i>
-        </a></br>
-        <a class="butam plus" href="Add">
-            <i class="fa fa-plus elo" aria-hidden="true"></i>
-        </a></br>
-        <a class="butam" href="Signup">
-            <i class="fa fa-user-plus elo" aria-hidden="true"></i>
-        </a></br>
-        <a class="butam plus" href="Login">
-            <i class="fa fa-arrow-up elo" aria-hidden="true"></i>
-        </a></br>
-    </nav>
+    <header>
+        <a href="Index"><img id="icon" src="~/Styles/icon.png"></a>
+    </header>
     <section>
         @using (Html.BeginForm("Scale", "FitBuddy", FormMethod.Post))
         {
             <div class="formik">
-                <input class="Textfield" type="text" name="Pronam" />
-                <input class="Fromb" type="submit" value="SELECT" />
+                <input class="Textfield" type="text" name="Pronam" placeholder="Name of Product" />
+                <input class="Textfield" type="text" name="gram" placeholder="Weight(g)" />
+                <input class="Fromb btn btn-success text-dark" type="submit" value="SELECT" />
             </div>
-            <!--<span class="display">@Html.DisplayFor(m => m)</span>-->
-            <!-- <div class="display">
-                @Html.DisplayFor(model => model.Name)
-                @Html.DisplayFor(model => model.Kcal)
-                @Html.DisplayFor(model => model.Protein)
-                @Html.DisplayFor(model => model.Carb)
-                @Html.DisplayFor(model => model.Fats)
-            </div>-->
 
-            <table class="table table-borderless table-dark desktop">
-                <thead>
-                    <tr>
-                        <th scope="col">Product</th>
-                        <th scope="col">Calories</th>
-                        <th scope="col">Protein</th>
-                        <th scope="col">Carbohydrates</th>
-                        <th scope="col">Fats</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">@Html.DisplayFor(model => model.Name)</th>
-                        <td>@Html.DisplayFor(model => model.Kcal)</td>
-                        <td>@Html.DisplayFor(model => model.Protein)</td>
-                        <td>@Html.DisplayFor(model => model.Carb)</td>
-                        <td>@Html.DisplayFor(model => model.Fats)</td>
-                    </tr>
-                </tbody>
-            </table>
 
-            <table class="table table-borderless table-dark mobile">
-                <thead>
-                    <tr>
-                        <th scope="col">Product</th>
-                        <th scope="col">@Html.DisplayFor(model => model.Name)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">Calories</th>
-                        <td>@Html.DisplayFor(model => model.Kcal)</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Protein</th>
-                        <td>@Html.DisplayFor(model => model.Protein)</td>
+            if (Model != null)
+            {
+                <table class="table table-borderless table-dark desktop" style=" background-color: transparent;">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">Calories</th>
+                            <th scope="col">Protein</th>
+                            <th scope="col">Carbohydrates</th>
+                            <th scope="col">Fats</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="h4" scope="row">@Model.Name</th>
+                            <td class="font-weight-bold h4">@(Model.Kcal * (ViewBag.g / 100))</td>
+                            <td class="font-weight-bold h4">@(Model.Protein * (ViewBag.g / 100))g</td>
+                            <td class="font-weight-bold h4">@(Model.Carb * (ViewBag.g / 100))g</td>
+                            <td class="font-weight-bold h4">@(Model.Fats * (ViewBag.g / 100))g</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-                    </tr>
-                    <tr>
-                        <th scope="row">Carbohydrates</th>
-                        <td>@Html.DisplayFor(model => model.Carb)</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Fats</th>
-                        <td>@Html.DisplayFor(model => model.Fats)</td>
-                    </tr>
-                </tbody>
-            </table>
+                <table class="table table-borderless table-dark mobile">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">@Model.Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Calories</th>
+                            <td>@(Model.Kcal * (ViewBag.g / 100))</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Protein</th>
+                            <td>@(Model.Protein * (ViewBag.g / 100))g</td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row">Carbohydrates</th>
+                            <td>@(Model.Carb * (ViewBag.g / 100))g</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Fats</th>
+                            <td>@(Model.Fats * (ViewBag.g / 100))g</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+
 
         }
+
+        @if (Model != null)
+        {
+
+            @*<div style="width:30vw; min-width:300px; max-width:300px; margin: 0 auto;
+                position: unset; display: block;" id="chart_div"></div>*@
+            <canvas class="chart my-5" width="300" height="180"></canvas>
+
+        }
+
+
+
+
+
     </section>
 
+
+
+
     <footer>@ViewBag.existing</footer>
+
+    @if (Model != null)
+    {
+
+        <script>
+
+            @{
+
+
+                var precenthelp = Model.Carb + Model.Fats + Model.Protein;
+                var precentcarb = Math.Round((Model.Carb * 100) / precenthelp);
+                var precentprot = Math.Round((Model.Protein * 100) / precenthelp);
+                var precentfats = Math.Round((Model.Fats * 100) / precenthelp);
+
+
+
+        }
+           // if (window.innerWidth <= 800) {
+
+                //a = document.querySelector(".mobilechart");
+                //b = document.querySelector(".deskchart");
+                //a.setAttribute("style", "display:block");
+                //b.setAttribute("style", "display:none");
+
+
+                new Chart(document.getElementsByClassName("chart"), {
+                    type: 'doughnut',
+                    data: {
+                        labels: [`Carbohydrates`, `Protein`, `Fats`],
+                        //labels: [`Carbohydrates - ${@precentcarb}% - ${@Model.Carb}g `, `Protein - ${@precentprot}% - ${@Model.Protein}g`, `Fats - ${@precentfats}% - ${@Model.Fats}g`],
+                        datasets: [
+                            {
+                                backgroundColor: ["#ff6666", "#adebad", "#ffff99"],
+                                data: [@Model.Carb, @Model.Protein, @Model.Fats]
+                            }
+                        ]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            fontColor: "white",
+                            hoverBorderColor: "yellow",
+                        },
+
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        legend: {
+
+                            labels: {
+
+                                fontSize: 15,
+                                fontColor: "white"
+                            }
+                        },
+
+                        tooltips: {
+                            callbacks: {
+                                title: function (tooltipItem, data) {
+                                    // return data['labels'][tooltipItem[0]['index']];
+                                },
+                                label: function (tooltipItem, data) {
+                                    // empty function, because default displays that what i dont wanna see.
+                                },
+                                afterLabel: function (tooltipItem, data) {
+                                    var dataset = data['datasets'][0];
+                                    var percent = Math.round((dataset['data'][tooltipItem['index']] / dataset["_meta"][0]['total']) * 100)
+                                    return '(' + percent + '%)';
+                                }
+                            },
+                            backgroundColor: '#FFF',
+                            titleFontSize: 16,
+                            titleFontColor: '#0066ff',
+                            bodyFontColor: '#000',
+                            bodyFontSize: 14,
+                            displayColors: false
+                        }
+                    }
+
+
+
+
+
+
+
+                });
+
+           // }
+
+            //else {
+
+                //c = document.querySelector(".mobilechart");
+                //d = document.querySelector(".deskchart");
+                //c.setAttribute("style", "display:none");
+                //d.setAttribute("style", "display:block");
+
+                @*new Chart(document.getElementsByClassName("deskchart"), {
+            type: 'doughnut',
+            data: {
+                labels: [`Carbohydrates - ${@Model.Carb}g`, `Protein - ${@Model.Protein}g`, `Fats - ${@Model.Fats}g`],
+                //labels: [`Carbohydrates - ${@precentcarb}% - ${@Model.Carb}g `, `Protein - ${@precentprot}% - ${@Model.Protein}g`, `Fats - ${@precentfats}% - ${@Model.Fats}g`],
+                datasets: [
+                    {
+                        backgroundColor: ["#ff6666", "#adebad", "#ffff99"],
+                        data: [@Model.Carb, @Model.Protein, @Model.Fats]
+                    }
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: `${@Model.Kcal}` + " Kcal",
+                    fontColor: "white",
+                    hoverBorderColor: "yellow",
+                    fontSize: 30
+                },
+                legend: {
+
+                    labels: {
+
+                        fontSize: 20,
+                        fontColor: "white"
+                    }
+                },
+
+                tooltips: {
+                    callbacks: {
+                        title: function (tooltipItem, data) {
+                           // return data['labels'][tooltipItem[0]['index']];
+                        },
+                        label: function (tooltipItem, data) {
+                            // empty function, because default displays that what i dont wanna see.
+                        },
+                        afterLabel: function (tooltipItem, data) {
+                            var dataset = data['datasets'][0];
+                            var percent = Math.round((dataset['data'][tooltipItem['index']] / dataset["_meta"][0]['total']) * 100)
+                            return '(' + percent + '%)';
+                        }
+                    },
+                    backgroundColor: '#FFF',
+                    titleFontSize: 16,
+                    titleFontColor: '#0066ff',
+                    bodyFontColor: '#000',
+                    bodyFontSize: 14,
+                    displayColors: false
+                }
+            }
+
+
+
+
+
+
+
+        });*@
+            //}
+
+        </script>
+
+
+    }
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-            <script src="script.js"></script>
 
-            </html>
+
+
+</body>
+<script src="script.js"></script>
+
+</html>

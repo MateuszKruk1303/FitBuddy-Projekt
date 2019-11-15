@@ -81,6 +81,11 @@ table.mobile{
     display: none;
 }
 
+pie-chart.mobile{
+
+    display:none;
+}
+
 section {
     position: relative;
     display: block;
@@ -91,6 +96,8 @@ section {
     text-align: center;
     opacity: 0.8;
 }
+
+
 
 .display {
     display: inline-block;
@@ -133,8 +140,8 @@ section {
 
 input[type=text] {
     clear: both;
-    background-color: dimgrey;
-    border: 2px double black;
+    background-color: whitesmoke;
+    border: 2px solid black;
     color: white;
     font-family: 'Sitka Subheading';
     text-align: center;
