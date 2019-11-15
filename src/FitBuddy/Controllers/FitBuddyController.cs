@@ -643,6 +643,8 @@ namespace FitBuddy.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
+            //..
+
             User us = dbu.Users.Find(Nick);
 
             if(dbu.Users.Find(Nick) == null)
