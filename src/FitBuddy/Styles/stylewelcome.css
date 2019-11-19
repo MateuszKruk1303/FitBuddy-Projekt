@@ -50,6 +50,14 @@ section.desktop {
     
 }
 
+footer {
+    color: lawngreen;
+    font-size: 3vw;
+    font-family: 'Indie Flower', cursive;
+    margin-top:50px;
+    text-align: center;
+}
+
 .aa {
 
     text-decoration: none;

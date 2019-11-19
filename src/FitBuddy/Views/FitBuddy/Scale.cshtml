@@ -29,7 +29,7 @@
 <body>
     @if (ViewBag.username != null)
     {
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top desk" style="font-family: 'Share Tech Mono', monospace;">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top desk">
             <div class="container">
                 <a class="navbar-brand" href="Index">Hello @ViewBag.username</a>
                 <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
@@ -113,7 +113,7 @@
     }
     else
     {
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top" style="font-family: 'Share Tech Mono', monospace;">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="Index">Home</a>
                 <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
@@ -141,13 +141,36 @@
     <header>
         <a href="Index"><img id="icon" src="~/Styles/icon.png"></a>
     </header>
+    <footer class="text-danger">@ViewBag.existing</footer>
     <section>
         @using (Html.BeginForm("Scale", "FitBuddy", FormMethod.Post))
         {
             <div class="formik">
-                <input class="Textfield" type="text" name="Pronam" placeholder="Name of Product" />
-                <input class="Textfield" type="text" name="gram" placeholder="Weight(g)" />
+                <input class="Textfield mb-3" type="text" name="Pronam" placeholder="Name of Product" />
+                <input class="Textfield mb-3" type="text" name="gram" placeholder="Weight(g)" />
+
+                @if (ViewBag.ip != null)
+                {
+                    <!-- Group of material radios - option 1 -->
+                    <div class="form-check mt-3">
+                        <input type="radio" class="form-check-input" id="materialGroupExample1" name="type" value="false">
+                        <label class="form-check-label text-light" for="materialGroupExample1">Use weight</label>
+                    </div>
+
+                    <!-- Group of material radios - option 2 -->
+                    @*<div class="form-check">
+                            <input type="radio" class="form-check-input" id="materialGroupExample2" name="type" value="true">
+                            <label class="form-check-label text-danger" for="materialGroupExample2"></label>
+                        </div>*@
+                }
+                else
+                {
+
+
+                }
+
                 <input class="Fromb btn btn-success text-dark" type="submit" value="SELECT" />
+
             </div>
 
 
@@ -224,7 +247,7 @@
 
 
 
-    <footer>@ViewBag.existing</footer>
+
 
     @if (Model != null)
     {

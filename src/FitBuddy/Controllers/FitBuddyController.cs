@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
@@ -29,15 +30,36 @@ namespace FitBuddy.Controllers
         private static bool status = false;
         public static string username;
         public static string rjs;
+        public static string ip;
+        public static int Id = 2;
 
-        private string downloadcont()
-        {
-            string url = "https://countn.com/";
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
-            StreamReader sr = new StreamReader(resp.GetResponseStream());
-            return sr.ReadToEnd();
-             
+        private string weightresult(string ip)
+        {                          
+            if(ip != null)
+            {
+                string url = $@"http://" + ip + "/";
+               
+                try
+                {
+                    HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+                    HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+                    StreamReader sr = new StreamReader(resp.GetResponseStream());
+                    return sr.ReadToEnd();
+
+                }
+                catch
+                {
+                    ViewBag.existing = "Problem with weight";
+                    return "0,0";
+                }
+               
+
+            }
+                
+                    
+                return "0,0";
+            
+                   
         }
 
         public ActionResult Welcome()
@@ -48,6 +70,7 @@ namespace FitBuddy.Controllers
 
         public ActionResult EmailChange()
         {
+
             ViewBag.username = username;
 
             if (status == false)
@@ -59,10 +82,36 @@ namespace FitBuddy.Controllers
             return View();
         }
 
+        public ActionResult Confirm(string regId)
+        {
+            try
+            {
+                string help = regId.Replace(" ", "+");
+                User con = dbu.Users.FirstOrDefault(x => x.regID == regId);
+                if(con.Active == true)
+                {
+                    ViewBag.existing = "Your account is already active!";
+                    return View();
+                }
+                con.Active = true;
+                dbu.SaveChanges();
+                ViewBag.existing = "Your accound has been activated!";
+                return View();
+
+            }
+            catch
+            {
+                ViewBag.existing = "fail";
+                return View();
+            }
+            
+                
+        }
+
         public ActionResult BMRcalc()
         {
             ViewBag.username = username;
-            ViewBag.existing = " ";
+            ViewBag.existing = null;
 
             if (status == false)
             {
@@ -172,6 +221,25 @@ namespace FitBuddy.Controllers
             // We dont need default values etc. better use int? double? when we're using forms
 
             ViewBag.username = username;
+            for(int i=0;i<=7;i++)
+            {
+               DateTime today = DateTime.Today;
+               DateTime nju = today.AddDays(-i);
+               if(dbuh.Progress.FirstOrDefault(x => x.Date == nju) !=null)
+                {
+                    ViewBag.existing = $"you have to wait {8-i} days to do next measure";
+                    return View();
+                }
+                else
+                {
+                    continue;
+                }
+               
+
+                
+            }
+
+
 
             if (status == false)
             {
@@ -260,7 +328,7 @@ namespace FitBuddy.Controllers
                 Limit = userp.Limit,
                 Weight = userp.Weight,
                 BMI = userp.BMI,
-                Date = DateTime.Today.Date,
+                Date = DateTime.Today,
                 //Date = dat,
             waist = userp.waist,
             arm = userp.arm,
@@ -418,7 +486,7 @@ namespace FitBuddy.Controllers
 
             User us = dbu.Users.Find(username);
 
-            if(pass != us.Pass)
+            if(!Crypto.VerifyHashedPassword(us.Pass, pass))
             {
                 ViewBag.existing = "Wrong Password!";
                 return View();
@@ -445,6 +513,76 @@ namespace FitBuddy.Controllers
             return View();
         }
 
+        public string getIP ()
+        {
+            string NazwaHosta = Dns.GetHostName();
+            IPHostEntry AdresyIP = Dns.GetHostEntry(NazwaHosta);
+            int licznik = 0;
+            string ip = "";
+            foreach (IPAddress AdresIP in AdresyIP.AddressList)
+            {
+
+                if (licznik == 0)
+                {
+                    licznik++;
+                    continue;
+
+                }
+                else
+                {
+                    ip = AdresIP.ToString();
+                }
+
+            }
+               
+            return ip;
+
+        }
+    
+
+    [HttpPost]
+        public ActionResult Index(string Name, string Subject, string text)
+        {
+            if(status)
+            {
+                try
+                {
+                    using (MailMessage msg = new MailMessage())
+                    {
+                        msg.From = new MailAddress("fitbuddy13@gmail.com");
+                        msg.To.Add("fitbuddy13@gmail.com");
+                        msg.Subject = Subject;
+                        msg.Body = text + "    " + "From:" + Name + "   IP:" + getIP();
+                        //msg.IsBodyHtml = true;
+
+                        using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                        {
+                            smtp.Credentials = new System.Net.NetworkCredential("fitbuddy13@gmail.com", "Fitbuddy1303");
+                            smtp.EnableSsl = true;
+                            smtp.Send(msg);
+
+                        }
+                    }
+
+                    ViewBag.existing = "Email sent!";
+
+                }
+                catch (Exception e)
+                {
+                    ViewBag.existing = e;
+                }
+
+                return View();
+            }
+            else
+            {
+                ViewBag.existing = "You have be logged in to send message";
+                return View();
+            }
+            
+        }
+
+
         public ActionResult Account()
         {
             if (status == false)
@@ -458,13 +596,10 @@ namespace FitBuddy.Controllers
         }
 
         [HttpPost]
-        public ActionResult Account(int limit)
+        public ActionResult Account(string IP)
         {
             ViewBag.username = username;
-
-            User updatelimit = dbu.Users.FirstOrDefault(x => x.Nick == username);
-            updatelimit.Limit = limit;
-            dbu.SaveChanges();
+            ip = IP;
             return View();
         }
 
@@ -563,6 +698,7 @@ namespace FitBuddy.Controllers
         public ActionResult Scale()
         {
             ViewBag.username = username;
+            ViewBag.ip = ip;
             //ViewBag.rjs = downloadcont();
 
             
@@ -572,10 +708,21 @@ namespace FitBuddy.Controllers
         }
 
         [HttpPost]
-        public ActionResult Scale(double gram=100, string pronam="")
+        public ActionResult Scale(double gram = 100, bool type = false, string pronam="")
         {
             ViewBag.username = username;
-            ViewBag.g = gram;
+            ViewBag.ip = ip;
+            string helper = weightresult(ip).Replace(".", ",");
+            double helper2;
+
+            if (type == false)
+            {
+                ViewBag.g = gram;
+            }
+            else
+            {
+                ViewBag.g = Convert.ToDouble(helper) * 10;
+            }
 
             if (pronam == null)
             {
@@ -602,10 +749,10 @@ namespace FitBuddy.Controllers
                 ProdHistory productt = new ProdHistory()
                 {
                     Name = prod.Name,
-                    Kcal =  prod.Kcal,
-                    Protein = prod.Protein,
-                    Carb = prod.Carb,
-                    Fats = prod.Fats,
+                    Kcal =  prod.Kcal * (ViewBag.g/100),
+                    Protein = prod.Protein * (ViewBag.g / 100),
+                    Carb = prod.Carb * (ViewBag.g / 100),
+                    Fats = prod.Fats * (ViewBag.g / 100),
                     Nick = username
                 };
 
@@ -638,6 +785,8 @@ namespace FitBuddy.Controllers
                 return View();
             }
 
+            
+
             if (Nick == null || pass==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -647,25 +796,37 @@ namespace FitBuddy.Controllers
 
             User us = dbu.Users.Find(Nick);
 
+         
+
             if(dbu.Users.Find(Nick) == null)
             {
-                ViewBag.existing = "Fail";
+                ViewBag.nickinv = "There is no user with that nickname";
+                ViewBag.passinv = null;
                 return View();
             }
-           
+
+
             if (!Crypto.VerifyHashedPassword(us.Pass, pass))
             {
-                ViewBag.existing = "Fail";
+                ViewBag.passinv = "Wrong Password";
+                return View();
+            }
+
+            if (us.Active == false)
+            {
+                ViewBag.existing = "you have to activate your account!";
                 return View();
             }
 
 
-            if(Crypto.VerifyHashedPassword(us.Pass, pass))
+            if (Crypto.VerifyHashedPassword(us.Pass, pass))
             {
                 status = true;
                 username = Nick;
                 ViewBag.username = username;
-                ViewBag.existing = "Logged!";
+                ViewBag.passinv = null;
+                ViewBag.nickinv = null;
+                Response.Redirect("Index");
                 return View();
             }
            
@@ -739,6 +900,23 @@ namespace FitBuddy.Controllers
                 user.calf = 0;
                 user.forearm = 0;
                 user.chest = 0;
+                Random r = new Random();
+                int rand = r.Next(1000, 214748364);
+                string randh = rand.ToString();
+                randh = Crypto.HashPassword(randh);
+                while (dbu.Users.FirstOrDefault(x => x.regID == randh) != null)
+                {
+                    rand = r.Next(1000, 214748364);
+                    randh = rand.ToString();
+                    randh = Crypto.HashPassword(randh);
+                }
+                randh = randh.Replace("+", "X");
+                randh = randh.Replace("/", "U");
+                randh = randh.Replace("=", "I");
+                randh = randh.Replace("%", "Z");
+
+                user.regID = randh;
+                user.Active = false;
                 dbu.Users.Add(user);
 
                 try
@@ -750,7 +928,25 @@ namespace FitBuddy.Controllers
                    
                         ViewBag.existing = "Something went wrong";
                 }
-                
+
+                using (MailMessage msg = new MailMessage())
+                {
+                    msg.From = new MailAddress("fitbuddy13@gmail.com");
+                    msg.To.Add(user.Email);
+                    msg.Subject = "Confirm your registeration";
+                    var url = "http://localhost:50647/FitBuddy/Confirm?regID=" + user.regID;
+                    msg.Body = "Confirm you account clicking there: " + url;
+                    //msg.IsBodyHtml = true;
+
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.Credentials = new System.Net.NetworkCredential("fitbuddy13@gmail.com", "Fitbuddy1303");
+                        smtp.EnableSsl = true;
+                        smtp.Send(msg);
+
+                    }
+                }
+
                 return View();
 
             }

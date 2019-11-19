@@ -13,8 +13,10 @@ namespace FitBuddy.Models
         [Required(ErrorMessage = " ")]
         public string Nick{ get; set; }
         [Required(ErrorMessage = " ")]
+        [StringLength(100,ErrorMessage = "At Least 6 characters", MinimumLength = 6)]
         public string Pass{ get; set; }
         [Required(ErrorMessage = " ")]
+        [EmailAddress]
         public string Email{ get; set; }
         public int Limit { get; set; }
         public double Weight { get; set; }
@@ -29,6 +31,8 @@ namespace FitBuddy.Models
         public int calf { get; set; }
         public int forearm { get; set; }
         public int chest { get; set; }
+        public string regID { get; set; }
+        public bool Active { get; set; }
 
 
 

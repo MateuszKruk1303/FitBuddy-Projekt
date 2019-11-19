@@ -29,7 +29,7 @@
 
     @if (ViewBag.username != null)
     {
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top desk" style="font-family: 'Share Tech Mono', monospace;">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top desk">
             <div class="container">
                 <a class="navbar-brand" href="Index">Hello @ViewBag.username</a>
                 <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
@@ -113,7 +113,7 @@
     }
     else
     {
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top" style="font-family: 'Share Tech Mono', monospace;">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="Index">Home</a>
                 <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
@@ -135,7 +135,7 @@
             </div>
         </nav>
 
-         <nav class="navbar navbar-dark bg-dark sticky-top mob">
+        <nav class="navbar navbar-dark bg-dark sticky-top mob">
 
             <a class="navbar-brand" href="Index">Navbar</a>
 
@@ -209,10 +209,23 @@
         }
     }
 
-    <footer class="d-block" style="margin-top:40px;">
-        Your Kcal limit: @ViewBag.kcallimits, Your actual count: Kcal: @kcalhelp
-        Carbo: @carbhelp Protein: @proteinhelp Fats: @fatshelp
-    </footer>
+    @if (ViewBag.kcallimits <= kcalhelp)
+    {
+
+        <footer class="d-block text-danger" style="margin-top:40px;">
+            Your Kcal limit: @ViewBag.kcallimits, Your actual count: Kcal: @kcalhelp
+            Carbo: @carbhelp Protein: @proteinhelp Fats: @fatshelp
+        </footer>
+
+
+    }
+    else
+    {
+        <footer class="d-block" style="margin-top:40px;">
+            Your Kcal limit: @ViewBag.kcallimits, Your actual count: Kcal: @kcalhelp
+            Carbo: @carbhelp Protein: @proteinhelp Fats: @fatshelp
+        </footer>
+    }
 
 
     <section style="height:40vh;">

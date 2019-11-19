@@ -26,7 +26,7 @@
 <body>
     @if (ViewBag.username != null)
     {
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top desk" style="font-family: 'Share Tech Mono', monospace;">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top desk">
             <div class="container">
                 <a class="navbar-brand" href="Index">Hello @ViewBag.username</a>
                 <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
@@ -110,7 +110,7 @@
     }
     else
     {
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top" style="font-family: 'Share Tech Mono', monospace;">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="Index">Home</a>
                 <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
@@ -142,12 +142,12 @@
     <section>
         @using (Html.BeginForm("Add", "FitBuddy"))
         {
-            <div class="form">@Html.EditorFor(m => m)</div>
+            <div class="form">@Html.EditorFor(m => m, new{required="required"})</div>
             <input class="btn btn-success btn-outline text-dark mt-5" type="submit" value="Send" />
         }
 
     </section>
-    <footer>@ViewBag.existing</footer>
+    <footer class="text-danger">@ViewBag.existing</footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

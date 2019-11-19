@@ -99,6 +99,9 @@ section{
 
 .editor-field {
 
+    font-size:25px;
+
+
 
 }
 
@@ -110,7 +113,7 @@ section{
     font-family: 'Sitka Subheading';
     text-align: center;
     height: 2vw;
-    min-height: 20px;
+    min-height: 30px;
     max-height: 50px;
     font-size:larger;
     max-width: 200px;
@@ -150,7 +153,8 @@ input[type=submit] {
 footer {
     display: block;
     color: lawngreen;
-    font-size: 3vw;
+    margin-top:1.5vh;
+    font-size: 4vw;
     font-family: 'Indie Flower', cursive;
     text-align: center;
 }

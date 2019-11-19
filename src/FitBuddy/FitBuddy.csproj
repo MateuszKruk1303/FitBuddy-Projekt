@@ -204,6 +204,7 @@
     <Content Include="Views\FitBuddy\PersonalData.cshtml" />
     <Content Include="Views\FitBuddy\Progress.cshtml" />
     <Content Include="Views\FitBuddy\BMRcalc.cshtml" />
+    <Content Include="Views\FitBuddy\Confirm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

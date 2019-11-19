@@ -5,9 +5,7 @@
 }
 
 
-body{
-
-    height: 500vh;
+body {
     width:100vw;
     background-image: url(bckgr3.jpg);
 }
@@ -137,9 +135,8 @@ nav.mobile{
 
 
 section {
-    box-sizing:border-box;
     display: block;
-    width: 100vw;
+    width: 100%;
     height: 110vh;
     margin: 0 auto;
     margin-top: 0;
@@ -166,8 +163,8 @@ section {
 }
 
 .divwith3 {
-    width: 100vw;
-    height: 70vh;
+    width: 99vw;
+    height: 65vh;
     background-color: #333333;
     display: flex;
     justify-content:space-around;
@@ -245,22 +242,43 @@ div.smallcont {
 }
 
 #prog {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background-color: blue;
 }
 
 #calc {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background-color: aquamarine;
 }
 
 #scale {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background-color: coral;
 }
+
+.MessageTitlebox {
+
+    width: 100%;
+    height: 20vh;
+    padding-top: 7vh;
+    margin-bottom: 10vh;
+}
+
+    .MessageTitlebox > h1 {
+        font-family: 'Exo 2', sans-serif;
+        font-size: 6vw;
+        color: white;
+        text-align: center;
+    }
+
+footer {
+    background-color: #333333;
+    height: 100vh;
+}
+
 
 
 @media(max-width:1064px)
@@ -304,6 +322,13 @@ div.smallcont {
         
     }
 
+    .MessageTitlebox > h1 {
+        font-family: 'Exo 2', sans-serif;
+        font-size: 9vw;
+        color: white;
+        text-align: center;
+    }
+
     .sub1>h1 {
          font-size:10vw;
     }
@@ -328,6 +353,7 @@ div.smallcont {
 
 
 }
+
 
 @media (max-width: 999px) {
     .mob{

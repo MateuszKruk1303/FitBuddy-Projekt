@@ -27,7 +27,7 @@
 <body>
     @if (ViewBag.username != null)
     {
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top desk" style="font-family: 'Share Tech Mono', monospace;">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top desk">
             <div class="container">
                 <a class="navbar-brand" href="Index">Hello @ViewBag.username</a>
                 <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
@@ -111,7 +111,7 @@
     }
     else
     {
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top" style="font-family: 'Share Tech Mono', monospace;">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="Index">Home</a>
                 <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
@@ -140,19 +140,19 @@
         <a href="Index"><img id="icon" src="~/Styles/icon.png"></a>
     </header>
 
-    <section>
+    <section style="height:25vh;">
         @using (Html.BeginForm("Account", "FitBuddy", FormMethod.Post))
         {
-            <input class="Textfield mt-5 mb-4 mx-auto" type="text" name="Limit" placeholder="Enter your limit" />
-            <input class="Fromb my-4 p-1 mx-auto" type="submit" value="Update" />
+            <input class="Textfield mt-5 mb-4 mx-auto" type="text" name="IP" placeholder="Enter Ip from weight" />
+            <input class="Fromb my-4 p-1 mx-auto" type="submit" value="Connect" />
         }
     </section>
 
     <footer class="mt-5">
-        <a href="PersonalData"><button type="button" class="btn btn-success btn-lg btn-block mb-4">Personal Data</button></a>
-        <a href="EmailChange"><button type="button" class="btn btn-primary btn-lg btn-block mb-4">Change E-mail</button></a>
-        <a href="PasswordChange"><button type="button" class="btn btn-warning btn-lg btn-block mb-4">Change Password</button></a>
-        <a href="AccountDelete"><button type="button" class="btn btn-danger btn-lg btn-block">Delete Account</button></a>
+        <a href="PersonalData"><button style="width:300px" type="button" class="btn btn-success btn-lg btn-block mb-4 mx-auto">Personal Data</button></a>
+        <a href="EmailChange"><button style="width:300px" type="button" class="btn btn-primary btn-lg btn-block mb-4 mx-auto">Change E-mail</button></a>
+        <a href="PasswordChange"><button style="width:300px" type="button" class="btn btn-warning btn-lg btn-block mb-4 mx-auto">Change Password</button></a>
+        <a href="AccountDelete"><button style="width:300px" type="button" class="btn btn-danger btn-lg btn-block mx-auto">Delete Account</button></a>
     </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

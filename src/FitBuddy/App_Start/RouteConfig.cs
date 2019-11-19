@@ -18,6 +18,12 @@ namespace FitBuddy
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "FitBuddy", action="Welcome", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+            "MyRoute", // Route name
+            "FitBuddy/Confirm/{MyString}", // URL with parameters
+            new { controller = "FitBuddy", action = "Confirm", MyString = UrlParameter.Optional } // Parameter defaults
+        );
         }
     }
 }

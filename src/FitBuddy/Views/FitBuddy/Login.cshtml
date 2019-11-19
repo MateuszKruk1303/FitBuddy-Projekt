@@ -27,7 +27,7 @@
 <body>
     @if (ViewBag.username != null)
     {
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top desk" style="font-family: 'Share Tech Mono', monospace;">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top desk">
             <div class="container">
                 <a class="navbar-brand" href="Index">Hello @ViewBag.username</a>
                 <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
@@ -111,7 +111,7 @@
     }
     else
     {
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top" style="font-family: 'Share Tech Mono', monospace;">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="Index">Home</a>
                 <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
@@ -141,11 +141,13 @@
     </header>
 
     <section>
-        @using (Html.BeginForm("Login", "FitBuddy", FormMethod.Post))
+        @using (Html.BeginForm("Login", "FitBuddy", FormMethod.Post, new { id = "signin" }))
         {
-            <input class="Textfield my-4" type="text" placeholder="Nickname" name="Nick" />
-            <input class="Textfield my-4" type="password" placeholder="Password" name="Pass" />
-            <input class="btn btn-success btn-outline" type="submit" value="Login" />
+            <input id="Nick" class="Textfield my-2" type="text" placeholder="Nickname" name="Nick" required />
+            <span class="text-danger d-block mb-4">@ViewBag.nickinv</span>
+            <input id="Password" class="Textfield my-2" type="password" placeholder="Password" name="Pass" required />
+            <span class="text-danger d-block mb-2">@ViewBag.passinv</span>
+            <input class="btn btn-success btn-outline mt-5" type="submit" value="Login" />
         }
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -153,7 +155,48 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </section>
     <footer>@ViewBag.existing</footer>
+
+    @*<script>
+        const nick = document.getElementById("Nick");
+        const password = document.getElementById("Password");
+        const form = document.getElementById("signin");
+        const passinva = document.getElementById("passinva");
+        const nickinva = document.getElementById("nickinva");
+        const nickvali = document.getElementById("nickvali");
+        let comunicate;
+        let comunicate2;
+        
+
+        form.addEventListener('submit', (e) => {
+
+        comunicate = "@ViewBag.nickinv";
+        comunicate2 = "@ViewBag.passinv";
+
+            if (comunicate != "") {
+
+                nickinva.innerHTML = "@ViewBag.nickinv";
+                nickinva.style.display = "block";
+                e.preventDefault();
+                comunicate = "";
+                comuncate2 = "";
+                
+
+            }
+            if (comunicate2 != "" && comunicate == "") {
+
+                passinva.innerHTML = "@ViewBag.passinv";
+                passinva.style.display = "block";
+                nickinva.style.display = "none";
+                e.preventDefault();
+                comunicate = "";
+                comuncate2 = "";
+
+            }
+
+        })
+    </script>*@
+
 </body>
-<script src="script.js"></script>
+
 
 </html>
