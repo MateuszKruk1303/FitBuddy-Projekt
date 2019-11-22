@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/Styles/stylehistory.css">
+    <link rel="stylesheet" href="~/Styles/styleprogress.css">
     <link rel="stylesheet" href="~/Styles/Navbarstyle.css" />
     <title>Document</title>
 </head>
@@ -176,19 +176,19 @@
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <canvas id="line-chart1" style="background-color: rgba(204, 255, 51, 0);" width="300" height="170"></canvas>
+                    <canvas id="line-chart1" style="background-color: rgba(204, 255, 51, 0);" width="300" height="240"></canvas>
                 </div>
                 <div class="carousel-item">
-                    <canvas id="luna" style="background-color: rgba(204, 255, 51, 0);" width="300" height="170"></canvas>
+                    <canvas id="luna" style="background-color: rgba(204, 255, 51, 0);" width="300" height="240"></canvas>
                 </div>
                 <div class="carousel-item">
-                    <canvas id="bombas" style="background-color: rgba(204, 255, 51, 0);" width="300" height="170"></canvas>
+                    <canvas id="bombas" style="background-color: rgba(204, 255, 51, 0);" width="300" height="240"></canvas>
                 </div>
                 <div class="carousel-item">
-                    <canvas id="chest" style="background-color: rgba(204, 255, 51, 0);" width="300" height="170"></canvas>
+                    <canvas id="chest" style="background-color: rgba(204, 255, 51, 0);" width="300" height="240"></canvas>
                 </div>
                 <div class="carousel-item">
-                    <canvas id="bmi" style="background-color: rgba(204, 255, 51, 0);" width="300" height="170"></canvas>
+                    <canvas id="bmi" style="background-color: rgba(204, 255, 51, 0);" width="300" height="240"></canvas>
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -201,7 +201,7 @@
             </a>
         </div>
 
-        <table class="table table-borderless table-dark desktop my-5">
+        <table class="table table-borderless table-dark my-5">
             <thead>
                 <tr>
                     <th scope="col">Date</th>
@@ -262,24 +262,37 @@
                     pointHoverBorderWidth: 1,
                     pointHoverBorderColor: "rgb(51, 255, 51)",
                     pointBorderColor: "rgb(51, 255, 51)",
-                    backgroundColor: "rgb(77, 77, 77)",
+                    backgroundColor: "rgb(222, 222, 222)",
 
 
 
                 }
 
                 ]
-            },
+                },
+
+                
 
             //datasets.data[0] = 3,
 
+
                 options: {
+
                     title: {
                         display: true,
                         text: "Weight progress chart",
                         fontColor: "#ffffff",
                         fontSize: 20,
                     },
+
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontColor: 'rgb(255, 255, 255)'
+                        }
+                    },
+
+                   
 
                     scales: {
                         yAxes: [{
@@ -355,7 +368,7 @@
                     pointHoverBorderWidth: 1,
                     pointHoverBorderColor: "rgb(51, 255, 51)",
                     pointBorderColor: "rgb(51, 255, 51)",
-                    backgroundColor: "rgb(77, 77, 77)",
+                    backgroundColor: "#990000",
 
 
 
@@ -367,11 +380,20 @@
             //datasets.data[0] = 3,
 
                 options: {
+
+
                     title: {
                         display: true,
                         text: "Waist progress chart",
                         fontColor: "#ffffff",
                         fontSize: 20,
+                    },
+
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontColor: 'rgb(255, 255, 255)'
+                        }
                     },
 
                     scales: {
@@ -448,7 +470,7 @@
                     pointHoverBorderWidth: 1,
                     pointHoverBorderColor: "rgb(51, 255, 51)",
                     pointBorderColor: "rgb(51, 255, 51)",
-                    backgroundColor: "rgb(77, 77, 77)",
+                    backgroundColor: "#608000",
 
 
 
@@ -460,11 +482,21 @@
             //datasets.data[0] = 3,
 
                 options: {
+
+
+
                     title: {
                         display: true,
                         text: "Arm progress chart",
                         fontColor: "#ffffff",
                         fontSize: 20,
+                    },
+
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontColor: 'rgb(255, 255, 255)'
+                        }
                     },
 
                     scales: {
@@ -559,11 +591,20 @@
             //datasets.data[0] = 3,
 
                 options: {
+
+
                     title: {
                         display: true,
                         text: "Chest progress chart",
                         fontColor: "#ffffff",
                         fontSize: 20,
+                    },
+
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontColor: 'rgb(255, 255, 255)'
+                        }
                     },
 
                     scales: {
@@ -638,7 +679,7 @@
                     pointHoverBorderWidth: 1,
                     pointHoverBorderColor: "rgb(51, 255, 51)",
                     pointBorderColor: "rgb(51, 255, 51)",
-                    backgroundColor: "rgb(77, 77, 77)",
+                    backgroundColor: "#3366ff",
 
 
 
@@ -650,11 +691,19 @@
             //datasets.data[0] = 3,
 
                 options: {
+
                     title: {
                         display: true,
                         text: "BMI progress chart",
                         fontColor: "#ffffff",
                         fontSize: 20,
+                    },
+
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontColor: 'rgb(255, 255, 255)'
+                        }
                     },
 
                     scales: {

@@ -130,7 +130,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="MailStyle\ActivMail.html" />
+    <None Include="Properties\PublishProfiles\fitbuddy.com.pl - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="MailStyle\bckgr3.jpg" />
+    <Content Include="MailStyle\icon.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -159,6 +163,7 @@
     <Content Include="Styles\stylehistory.css" />
     <Content Include="Styles\styleindex.css" />
     <Content Include="Styles\stylelogin.css" />
+    <Content Include="Styles\styleprogress.css" />
     <Content Include="Styles\stylescale.css" />
     <Content Include="Styles\stylesignup.css" />
     <Content Include="Styles\stylewelcome.css" />

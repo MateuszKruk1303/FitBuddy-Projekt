@@ -143,13 +143,13 @@
     <section>
         @using (Html.BeginForm("AccountDelete", "FitBuddy", FormMethod.Post))
         {
-            <input class="Textfield mt-5 mb-4 mx-auto" type="text" name="pass" placeholder="password" />
+            <input class="Textfield mt-5 mb-4 mx-auto" style="text-align:center;" type="text" name="pass" placeholder="password" />
             <input class="Fromb my-4 p-1 mx-auto btn btn-danger" type="submit" value="Delete" />
         }
     </section>
 
     <footer class="mt-5" style="color:lawngreen;">
-        :(
+        @ViewBag.existing
     </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

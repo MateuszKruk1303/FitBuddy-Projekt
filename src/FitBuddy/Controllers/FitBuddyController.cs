@@ -86,7 +86,6 @@ namespace FitBuddy.Controllers
         {
             try
             {
-                string help = regId.Replace(" ", "+");
                 User con = dbu.Users.FirstOrDefault(x => x.regID == regId);
                 if(con.Active == true)
                 {
@@ -373,10 +372,29 @@ namespace FitBuddy.Controllers
                 ViewBag.existing = "Wrong old mail";
                 return View();
             }
-
-            if (!(pass == us.Pass))
+            
+            if (!Crypto.VerifyHashedPassword(us.Pass, pass))
             {
                 ViewBag.existing = "Wrong Pass";
+                return View();
+            }
+
+            bool IsValidEmail(string email)
+            {
+                try
+                {
+                    var addr = new MailAddress(email);
+                    return addr.Address == email;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            if (!IsValidEmail(newmail))
+            {
+                ViewBag.existing = "new mail is not valid!";
                 return View();
             }
 
@@ -390,14 +408,84 @@ namespace FitBuddy.Controllers
             else
             {
                 User helpnewmail = dbu.Users.FirstOrDefault(x => x.Nick == username);
+                Random r = new Random();
+                int rand = r.Next(1000, 214748364);
+                string randh = rand.ToString();
+                randh = Crypto.HashPassword(randh);
+                while (dbu.Users.FirstOrDefault(x => x.regID == randh) != null)
+                {
+                    rand = r.Next(1000, 214748364);
+                    randh = rand.ToString();
+                    randh = Crypto.HashPassword(randh);
+                }
+                randh = randh.Replace("+", "X");
+                randh = randh.Replace("/", "U");
+                randh = randh.Replace("=", "I");
+                randh = randh.Replace("%", "Z");
+
+                helpnewmail.regID = randh;
+                helpnewmail.Active = false;
+
+                try
+                {
+                    dbu.SaveChanges();
+                }
+                catch                               
+                {
+
+                    ViewBag.existing = "Fail";
+                }
+
+                using (MailMessage msg = new MailMessage())
+                {
+                    msg.From = new MailAddress("fitbuddy13@gmail.com");
+                    msg.To.Add(oldmail);
+                    msg.Subject = "Your E-mail has been changed!";
+                    msg.Body = "Your Email has been changed to: " + newmail;
+
+
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.Credentials = new NetworkCredential("fitbuddy13@gmail.com", "Fitbuddy1303");
+                        smtp.EnableSsl = true;
+                        smtp.Send(msg);
+
+                    }
+                }
+
+                using (MailMessage msg = new MailMessage())
+                {
+                    msg.From = new MailAddress("fitbuddy13@gmail.com");
+                    msg.To.Add(newmail);
+                    msg.Subject = "Confirm your new Email";
+                    var url = "http://localhost:50647/FitBuddy/Confirm?regID=" + helpnewmail.regID;
+                    using (StreamReader reader = new StreamReader(Server.MapPath("~/MailStyle/ActivMail.html")))
+                    {
+                        msg.Body = reader.ReadToEnd();
+                    }
+
+                    msg.Body = msg.Body.Replace("{url}", url);
+                    msg.Body = msg.Body.Replace("{Nick}", helpnewmail.Nick);
+                    // msg.Body = "Confirm you account clicking there: " + url;
+                    msg.IsBodyHtml = true;
+
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.Credentials = new NetworkCredential("fitbuddy13@gmail.com", "Fitbuddy1303");
+                        smtp.EnableSsl = true;
+                        smtp.Send(msg);
+
+                    }
+                }
+
                 helpnewmail.Email = newmail;
                 dbu.SaveChanges();
-                ViewBag.existing = "Email Changed!";
+                status = false;
+                ViewBag.username = null;
+                ViewBag.existing = "Check mailbox and confirm your new email!";
                 return View();
             }
 
-
-            return View();
         }
 
         public ActionResult PasswordChange()
@@ -430,8 +518,9 @@ namespace FitBuddy.Controllers
                 return View();
             }
             User us = dbu.Users.Find(username);
+            
 
-            if(oldpass != us.Pass)
+            if (!Crypto.VerifyHashedPassword(us.Pass, oldpass))
             {
                 ViewBag.existing = "Wrong old password!";
                 return View();
@@ -441,8 +530,14 @@ namespace FitBuddy.Controllers
                 ViewBag.existing = "New passwrod and old are same!";
                 return View();
             }
+            if(newpass.Length < 6 )
+            {
+                ViewBag.existing = "At least 6 characters!";
+                return View();
+            }
             else
             {
+                newpass = Crypto.HashPassword(newpass);
                 User helpnewpass = dbu.Users.FirstOrDefault(x => x.Nick == username);
                 helpnewpass.Pass = newpass;
                 ViewBag.existing = "Password Changed!";
@@ -464,6 +559,7 @@ namespace FitBuddy.Controllers
         public ActionResult AccountDelete()
         {
             ViewBag.username = username;
+            ViewBag.existing = ":(";
 
             if (status == false)
             {
@@ -488,7 +584,8 @@ namespace FitBuddy.Controllers
 
             if(!Crypto.VerifyHashedPassword(us.Pass, pass))
             {
-                ViewBag.existing = "Wrong Password!";
+                ViewBag.username = username;
+                ViewBag.existing = "Wrong Password (Unknow power says - Dont do this!)";
                 return View();
 
             }
@@ -919,24 +1016,32 @@ namespace FitBuddy.Controllers
                 user.Active = false;
                 dbu.Users.Add(user);
 
-                try
-                {
-                  dbu.SaveChanges();
-                }
-                catch                               // 420 NOSCOPE MOM GET THE CAMERA
-                {
-                   
-                        ViewBag.existing = "Something went wrong";
-                }
+               
 
                 using (MailMessage msg = new MailMessage())
                 {
                     msg.From = new MailAddress("fitbuddy13@gmail.com");
-                    msg.To.Add(user.Email);
+                    try
+                    {
+                        msg.To.Add(user.Email);
+                    }
+                    catch
+                    {
+                        ViewBag.existing = "Wrong E-mail adress!";
+                        return View();
+                    }
+                    
                     msg.Subject = "Confirm your registeration";
                     var url = "http://localhost:50647/FitBuddy/Confirm?regID=" + user.regID;
-                    msg.Body = "Confirm you account clicking there: " + url;
-                    //msg.IsBodyHtml = true;
+                    using (StreamReader reader = new StreamReader(Server.MapPath("~/MailStyle/ActivMail.html")))
+                    {
+                        msg.Body = reader.ReadToEnd();
+                    }
+
+                    msg.Body = msg.Body.Replace("{url}", url);
+                    msg.Body = msg.Body.Replace("{Nick}", user.Nick);
+                       // msg.Body = "Confirm you account clicking there: " + url;
+                    msg.IsBodyHtml = true;
 
                     using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                     {
@@ -945,6 +1050,16 @@ namespace FitBuddy.Controllers
                         smtp.Send(msg);
 
                     }
+                }
+
+                try
+                {
+                    dbu.SaveChanges();
+                }
+                catch                               // 420 NOSCOPE MOM GET THE CAMERA
+                {
+
+                    ViewBag.existing = "Something went wrong";
                 }
 
                 return View();

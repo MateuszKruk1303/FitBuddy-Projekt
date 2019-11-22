@@ -167,7 +167,7 @@ input[type=text]:focus {
 
 footer {
     color: lawngreen;
-    font-size: 2.6vw;
+    font-size: calc(2vw + 1.4rem);
     font-family: 'Indie Flower', cursive;
     text-align: center;
 }

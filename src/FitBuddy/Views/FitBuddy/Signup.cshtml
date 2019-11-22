@@ -146,11 +146,11 @@
     <section>
         @using (Html.BeginForm("Signup", "FitBuddy", FormMethod.Post))
         {
-            <input class="Textfield mt-5 mb-4 mx-auto" type="text" name="Nick" placeholder="Enter Nickname" />
-            <input class="Textfield my-4 mx-auto" type="text" name="Email" placeholder="Enter email" />
-            <input class="Textfield my-4 mx-auto" type="password" name="Pass" placeholder="Enter Password" />
-            <input class="Textfield my-4 mx-auto" type="password" name="Passrep" placeholder="Repeat Password" />
-            <input class="Fromb my-4 p-1 mx-auto" type="submit" value="Register" />
+            <input class="Textfield mt-5 mb-4 mx-auto" style="text-align:center;" type="text" name="Nick" placeholder="Enter Nickname" required />
+            <input class="Textfield my-4 mx-auto" style="text-align:center;" type="text" name="Email" placeholder="Enter email" required/>
+            <input class="Textfield my-4 mx-auto" style="text-align:center;" type="password" name="Pass" placeholder="Enter Password" required />
+            <input class="Textfield my-4 mx-auto" style="text-align:center;" type="password" name="Passrep" placeholder="Repeat Password" required />
+            <input class="Fromb my-4 p-1 mx-auto btn btn-success text-dark" style="text-align:center;" type="submit" value="Register" />
         }
     </section>
     <footer>

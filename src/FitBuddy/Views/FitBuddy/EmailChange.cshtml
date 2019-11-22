@@ -143,12 +143,12 @@
     <section>
         @using (Html.BeginForm("EmailChange", "FitBuddy", FormMethod.Post))
         {
-            <input class="Textfield mt-5 mb-4 mx-auto" type="text" name="oldmail" placeholder="Old Email" />
-            <input class="Textfield mt-5 mb-4 mx-auto" type="text" name="newmail" placeholder="New Email" />
-            <input class="Textfield mt-5 mb-4 mx-auto" type="text" name="pass" placeholder="Password" />
+            <input class="Textfield mt-5 mb-4 mx-auto" style="text-align:center;" type="text" name="oldmail" placeholder="Old Email" />
+            <input class="Textfield mt-5 mb-4 mx-auto" style="text-align:center;" type="text" name="newmail" placeholder="New Email" />
+            <input class="Textfield mt-5 mb-4 mx-auto" style="text-align:center;" type="text" name="pass" placeholder="Password" />
 
 
-            <input class="Fromb my-4 p-1 mx-auto" type="submit" value="Update" />
+            <input class="Fromb my-4 p-1 mx-auto btn btn-success text-dark" type="submit" value="Update" />
         }
     </section>
 

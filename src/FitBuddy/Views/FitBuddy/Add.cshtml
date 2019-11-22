@@ -142,8 +142,8 @@
     <section>
         @using (Html.BeginForm("Add", "FitBuddy"))
         {
-            <div class="form">@Html.EditorFor(m => m, new{required="required"})</div>
-            <input class="btn btn-success btn-outline text-dark mt-5" type="submit" value="Send" />
+            <div class="form">@Html.EditorFor(m => m, new{required = "required"})</div>
+            <input class="btn btn-success btn-outline text-dark mt-5" style="margin-bottom:30px;" type="submit" value="Send" />
         }
 
     </section>

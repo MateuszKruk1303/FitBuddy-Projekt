@@ -230,14 +230,15 @@
 
     <section style="height:40vh;">
 
-        <table class="table table-borderless table-dark desktop">
+        <table class="table table-borderless table-dark mobile">
             <thead>
                 <tr>
-                    <th scope="col">Product</th>
-                    <th scope="col">Calories</th>
-                    <th scope="col">Protein</th>
-                    <th scope="col">Carbohydrates</th>
-                    <th scope="col">Fats</th>
+                    
+                    <th scope="col">Name</th>
+                    <th scope="col">Kcal</th>
+                    <th scope="col">P</th>
+                    <th scope="col">C</th>
+                    <th scope="col">F</th>
                 </tr>
             </thead>
             <tbody>
@@ -269,37 +270,52 @@
 
             </tbody>
         </table>
-        @*<table class="table table-borderless table-dark mobile">
-                <thead>
-                    <tr>
-                        <th scope="col">Product</th>
-                        <th scope="col">@Html.DisplayFor(model => model.Name)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">Calories</th>
-                        <td>@Html.DisplayFor(model => model.Kcal)</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Protein</th>
-                        <td>@Html.DisplayFor(model => model.Protein)</td>
 
-                    </tr>
-                    <tr>
-                        <th scope="row">Carbohydrates</th>
-                        <td>@Html.DisplayFor(model => model.Carb)</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Fats</th>
-                        <td>@Html.DisplayFor(model => model.Fats)</td>
-                    </tr>
-                </tbody>
-            </table>*@
+        <table class="table table-borderless table-dark desktop">
+            <thead>
+                <tr>
+
+                    <th scope="col">Product</th>
+                    <th scope="col">Calories</th>
+                    <th scope="col">Protein</th>
+                    <th scope="col">Carbohydrates</th>
+                    <th scope="col">Fats</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    try
+                    {
+                        foreach (var item in Model)
+                        {
+                            kcalhelp += item.Kcal;
+                            carbhelp += item.Carb;
+                            proteinhelp += item.Protein;
+                            fatshelp += item.Fats;
+
+                            <tr>
+                                <th scope="row">@Html.DisplayFor(model => item.Name)</th>
+                                <td>@Html.DisplayFor(model => item.Kcal)</td>
+                                <td>@Html.DisplayFor(model => item.Protein)</td>
+                                <td>@Html.DisplayFor(model => item.Carb)</td>
+                                <td>@Html.DisplayFor(model => item.Fats)</td>
+                            </tr>
+                        }
+                    }
+                    catch
+                    {
+
+                    }
+                }
+
+
+            </tbody>
+        </table>
 
         @using (Html.BeginForm("History", "FitBuddy", FormMethod.Post))
         {
-            <input class="btn btn-warning btn-lg mx-auto mt-5" type="submit" value="Clear Hisotry">
+            <input class="btn btn-warning btn-lg mx-auto mt-5 mb-5" style="margin-bottom:30px;" type="submit" value="Clear Hisotry">
         }
 
 
