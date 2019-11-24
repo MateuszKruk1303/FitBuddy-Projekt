@@ -9,7 +9,7 @@ namespace FitBuddy.DAL
 {
     public class UsersContext : DbContext
     {
-        public UsersContext() : base("Data Source=DESKTOP-9TVPAS9\\SQLEXPRESS01;Initial Catalog=FitBuddy;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework")
+        public UsersContext() : base("Data Source=mssql6.webio.pl,2401;Database=cienkarenta_FitBuddy;Uid=cienkarenta_cienkarenta;Password=Apokalipsa1303!")
         {
 
         }

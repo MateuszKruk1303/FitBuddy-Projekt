@@ -25,13 +25,13 @@ namespace FitBuddy.Controllers
         public UserProgressContext dbuh = new UserProgressContext();
 
         // GET: FitBuddy
-        public static float kcallimits;
+        public float kcallimits;
         public string existing;
-        private static bool status = false;
-        public static string username;
-        public static string rjs;
-        public static string ip;
-        public static int Id = 2;
+        private bool status = false;
+        public string username;
+        public string rjs;
+        public string ip;
+        public int Id = 2;
 
         private string weightresult(string ip)
         {                          

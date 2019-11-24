@@ -132,6 +132,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="MailStyle\ActivMail.html" />
     <None Include="Properties\PublishProfiles\fitbuddy.com.pl - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\fitbuddy.com.pl - Web Deploy1.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="MailStyle\bckgr3.jpg" />
     <Content Include="MailStyle\icon.png" />
@@ -170,7 +171,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\ReactConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\FitBuddyController.cs" />
     <Compile Include="DAL\ProdHistoryContext.cs" />
