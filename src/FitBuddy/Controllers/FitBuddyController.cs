@@ -27,11 +27,10 @@ namespace FitBuddy.Controllers
         // GET: FitBuddy
         public float kcallimits;
         public string existing;
-        private bool status = false;
-        public string username;
         public string rjs;
         public string ip;
         public int Id = 2;
+        HttpCookie NickCookie = new HttpCookie("username", null);
 
         private string weightresult(string ip)
         {                          
@@ -70,10 +69,16 @@ namespace FitBuddy.Controllers
 
         public ActionResult EmailChange()
         {
+            try
+            {
+                ViewBag.username = Request.Cookies["username"].Value;
+            }
+            catch
+            {
 
-            ViewBag.username = username;
+            }
 
-            if (status == false)
+            if (Request.Cookies["username"] == null)
             {
                 Response.Redirect("Index");
                 return View();
@@ -109,10 +114,16 @@ namespace FitBuddy.Controllers
 
         public ActionResult BMRcalc()
         {
-            ViewBag.username = username;
+            try
+            {
+                ViewBag.username = Request.Cookies["username"].Value;
+            }
+            catch
+            {
+            }
             ViewBag.existing = null;
 
-            if (status == false)
+            if (Request.Cookies["username"] == null)
             {
                 Response.Redirect("Index");
             }
@@ -122,9 +133,15 @@ namespace FitBuddy.Controllers
         [HttpPost]
         public ActionResult BMRcalc(int? ex, int? time, bool goal)
         {
-            ViewBag.username = username;
+            try
+            {
+                ViewBag.username = Request.Cookies["username"].Value;
+            }
+            catch
+            {
+            }
 
-            if (status == false)
+            if (Request.Cookies["username"] == null)
             {
                 Response.Redirect("Index");
             }
@@ -141,7 +158,9 @@ namespace FitBuddy.Controllers
 
             }
 
-            User us = dbu.Users.Find(username);
+            string str = Request.Cookies["username"].Value;
+
+            User us = dbu.Users.Find(str);
             double? prebm = 0;
             if(us.Sex == "m")
             {
@@ -189,22 +208,48 @@ namespace FitBuddy.Controllers
 
         public ActionResult Progress()
         {
-            if(status == false)
+          
+
+            try
             {
+
+                if (Request.Cookies["username"].Value == null)
+                {
+                    Response.Redirect("Index");
+                }
+                ViewBag.username = Request.Cookies["username"].Value;
+
+                string stri = Request.Cookies["username"].Value;
+
+
+            }
+            catch
+            {
+
                 Response.Redirect("Index");
+                return View();
             }
 
-            ViewBag.username = username;
-            List<UserProgress> Prog = dbuh.Progress.Where(x => x.Nick == username).ToList();
+     
+            string str = Request.Cookies["username"].Value;
+
+
+            List<UserProgress> Prog = dbuh.Progress.Where(x => x.Nick == str).ToList();
 
             return View(Prog);
         }
 
         public ActionResult PersonalData()
         {
-            ViewBag.username = username;
+            try
+            {
+                ViewBag.username = Request.Cookies["username"].Value;
+            }
+            catch
+            {
+            }
 
-            if (status == false)
+            if (Request.Cookies["username"] == null)
             {
                 Response.Redirect("Index");
                 return View();
@@ -219,8 +264,14 @@ namespace FitBuddy.Controllers
         {
             // We dont need default values etc. better use int? double? when we're using forms
 
-            ViewBag.username = username;
-            for(int i=0;i<=7;i++)
+            try
+            {
+                ViewBag.username = Request.Cookies["username"].Value;
+            }
+            catch
+            {
+            }
+            for (int i=0;i<=7;i++)
             {
                DateTime today = DateTime.Today;
                DateTime nju = today.AddDays(-i);
@@ -240,13 +291,15 @@ namespace FitBuddy.Controllers
 
 
 
-            if (status == false)
+            if (Request.Cookies["username"] == null)
             {
                 Response.Redirect("Index");
                 return View();
             }
 
-            User us = dbu.Users.Find(username);
+            string str = Request.Cookies["username"].Value;
+
+            User us = dbu.Users.Find(str);
 
             sex = us.Sex;
             sex = "m";
@@ -303,9 +356,9 @@ namespace FitBuddy.Controllers
                 ViewBag.existing = "Error with gender, write m or k in field!";
             }
 
-            
+            string stri = Request.Cookies["username"].Value;
 
-            User helper = dbu.Users.FirstOrDefault(x => x.Nick == username);
+            User helper = dbu.Users.FirstOrDefault(x => x.Nick == stri);
             helper.Weight = wg;
             helper.Age = age;
             helper.Height = hg;
@@ -319,7 +372,7 @@ namespace FitBuddy.Controllers
             helper.BMI = (wg / (hg * hg)) * 10000;
             dbu.SaveChanges();
 
-            User userp = dbu.Users.Find(username);
+            User userp = dbu.Users.Find(stri);
             //DateTime dat = new DateTime(2019, 11, 3);
 
             UserProgress progres = new UserProgress()
@@ -329,15 +382,15 @@ namespace FitBuddy.Controllers
                 BMI = userp.BMI,
                 Date = DateTime.Today,
                 //Date = dat,
-            waist = userp.waist,
-            arm = userp.arm,
-            thigh = userp.thigh,
-            calf = userp.calf,
-            forearm = userp.forearm,
-            chest = userp.chest,
-            Nick = username
+                waist = userp.waist,
+                arm = userp.arm,
+                thigh = userp.thigh,
+                calf = userp.calf,
+                forearm = userp.forearm,
+                chest = userp.chest,
+                Nick = Request.Cookies["username"].Value
             };
-            List<UserProgress> progressiv = dbuh.Progress.Where(x => x.Nick == username).ToList();
+            List<UserProgress> progressiv = dbuh.Progress.Where(x => x.Nick == stri).ToList();
             List<UserProgress> helperek = dbuh.Progress.ToList();
             progres.proID = helperek.Count;
             dbuh.Progress.Add(progres);
@@ -351,9 +404,15 @@ namespace FitBuddy.Controllers
         [HttpPost]
         public ActionResult EmailChange(string oldmail, string newmail, string pass)
         {
-            ViewBag.username = username;
+            try
+            {
+                ViewBag.username = Request.Cookies["username"].Value;
+            }
+            catch
+            {
+            }
 
-            if (status == false)
+            if (Request.Cookies["username"] == null)
             {
                 Response.Redirect("Index");
                 return View();
@@ -365,7 +424,9 @@ namespace FitBuddy.Controllers
                 return View();
             }
 
-            User us = dbu.Users.Find(username);
+            string str = Request.Cookies["username"].Value;
+
+            User us = dbu.Users.Find(str);
 
             if (!(oldmail == us.Email))
             {
@@ -407,7 +468,7 @@ namespace FitBuddy.Controllers
             }
             else
             {
-                User helpnewmail = dbu.Users.FirstOrDefault(x => x.Nick == username);
+                User helpnewmail = dbu.Users.FirstOrDefault(x => x.Nick == str);
                 Random r = new Random();
                 int rand = r.Next(1000, 214748364);
                 string randh = rand.ToString();
@@ -480,7 +541,6 @@ namespace FitBuddy.Controllers
 
                 helpnewmail.Email = newmail;
                 dbu.SaveChanges();
-                status = false;
                 ViewBag.username = null;
                 ViewBag.existing = "Check mailbox and confirm your new email!";
                 return View();
@@ -490,9 +550,15 @@ namespace FitBuddy.Controllers
 
         public ActionResult PasswordChange()
         {
-            ViewBag.username = username;
+            try
+            {
+                ViewBag.username = Request.Cookies["username"].Value;
+            }
+            catch
+            {
+            }
 
-            if (status == false)
+            if (Request.Cookies["username"] == null)
             {
                 Response.Redirect("Index");
                 return View();
@@ -505,9 +571,15 @@ namespace FitBuddy.Controllers
         [HttpPost]
         public ActionResult PasswordChange(string oldpass, string newpass)
         {
-            ViewBag.username = username;
+            try
+            {
+                ViewBag.username = Request.Cookies["username"].Value;
+            }
+            catch
+            {
+            }
 
-            if (status == false)
+            if (Request.Cookies["username"] == null)
             {
                 Response.Redirect("Index");
                 return View();
@@ -517,7 +589,9 @@ namespace FitBuddy.Controllers
                 ViewBag.existing = "Fill every field!";
                 return View();
             }
-            User us = dbu.Users.Find(username);
+
+            string str = Request.Cookies["username"].Value;
+            User us = dbu.Users.Find(str);
             
 
             if (!Crypto.VerifyHashedPassword(us.Pass, oldpass))
@@ -538,7 +612,7 @@ namespace FitBuddy.Controllers
             else
             {
                 newpass = Crypto.HashPassword(newpass);
-                User helpnewpass = dbu.Users.FirstOrDefault(x => x.Nick == username);
+                User helpnewpass = dbu.Users.FirstOrDefault(x => x.Nick == str);
                 helpnewpass.Pass = newpass;
                 ViewBag.existing = "Password Changed!";
                 try
@@ -558,10 +632,17 @@ namespace FitBuddy.Controllers
 
         public ActionResult AccountDelete()
         {
-            ViewBag.username = username;
+            try
+            {
+                ViewBag.username = Request.Cookies["username"].Value;
+            }
+            catch
+            {
+            }
+
             ViewBag.existing = ":(";
 
-            if (status == false)
+            if (Request.Cookies["username"] == null)
             {
                 Response.Redirect("Index");
                 return View();
@@ -574,28 +655,38 @@ namespace FitBuddy.Controllers
 
         public ActionResult AccountDelete(string pass)
         {
-            if (status == false)
+            if (Request.Cookies["username"] == null)
             {
                 Response.Redirect("Index");
                 return View();
             }
 
-            User us = dbu.Users.Find(username);
+            string str = Request.Cookies["username"].Value;
+
+            User us = dbu.Users.Find(str);
 
             if(!Crypto.VerifyHashedPassword(us.Pass, pass))
             {
-                ViewBag.username = username;
+                try
+                {
+                    ViewBag.username = Request.Cookies["username"].Value;
+                }
+                catch
+                {
+                }
+
                 ViewBag.existing = "Wrong Password (Unknow power says - Dont do this!)";
                 return View();
 
             }
             else
             {
-                User delete = dbu.Users.FirstOrDefault(x => x.Nick == username);
+                User delete = dbu.Users.FirstOrDefault(x => x.Nick == str);
                 dbu.Users.Remove(delete);
                 dbu.SaveChanges();
-                status = false;
-                username = null;
+                Session.Abandon();
+                NickCookie.Value = null;
+                //username = null;
                 Response.Redirect("Index");
                 return View();
 
@@ -606,7 +697,14 @@ namespace FitBuddy.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.username = username;
+            try
+            {
+                ViewBag.username = Request.Cookies["username"].Value;
+            }
+            catch
+            {
+            }
+            
             return View();
         }
 
@@ -640,7 +738,7 @@ namespace FitBuddy.Controllers
     [HttpPost]
         public ActionResult Index(string Name, string Subject, string text)
         {
-            if(status)
+            if(Request.Cookies["username"] != null)
             {
                 try
                 {
@@ -682,20 +780,34 @@ namespace FitBuddy.Controllers
 
         public ActionResult Account()
         {
-            if (status == false)
+            if (Request.Cookies["username"] == null)
             {
                 Response.Redirect("Index");
                 return View();
             }
 
-            ViewBag.username = username;
+            try
+            {
+                ViewBag.username = Request.Cookies["username"].Value;
+            }
+            catch
+            {
+            }
+
             return View();
         }
 
         [HttpPost]
         public ActionResult Account(string IP)
         {
-            ViewBag.username = username;
+            try
+            {
+                ViewBag.username = Request.Cookies["username"].Value;
+            }
+            catch
+            {
+            }
+
             ip = IP;
             return View();
         }
@@ -703,14 +815,21 @@ namespace FitBuddy.Controllers
 
         public ActionResult History()
         {
-            if (status == false)
+            if (Request.Cookies["username"] == null)
             {
                 Response.Redirect("Index");
                 return View();
             }
-            ViewBag.username = username;
-            List<ProdHistory> productt = dbh.ProdHistoryy.Where(x => x.Nick == username).ToList();
-            ViewBag.kcallimits = dbu.Users.FirstOrDefault(x => x.Nick == username).Limit;
+            try
+            {
+                ViewBag.username = Request.Cookies["username"].Value;
+            }
+            catch
+            {
+            }
+            string str = Request.Cookies["username"].Value;
+            List<ProdHistory> productt = dbh.ProdHistoryy.Where(x => x.Nick == str).ToList();
+            ViewBag.kcallimits = dbu.Users.FirstOrDefault(x => x.Nick == str).Limit;
 
             return View(productt);
             
@@ -719,13 +838,20 @@ namespace FitBuddy.Controllers
     [HttpPost]
         public ActionResult History(Object obj)
         {
-            ViewBag.username = username;
+            try
+            {
+                ViewBag.username = Request.Cookies["username"].Value;
+            }
+            catch
+            {
+            }
 
             while (true)
             {
                 try
                 {
-                    ProdHistory item = dbh.ProdHistoryy.FirstOrDefault(x => x.Nick == username);
+                    string str = Request.Cookies["username"].Value;
+                    ProdHistory item = dbh.ProdHistoryy.FirstOrDefault(x => x.Nick == str);
                     dbh.ProdHistoryy.Remove(item);
                     
                     dbh.SaveChanges();
@@ -742,14 +868,21 @@ namespace FitBuddy.Controllers
 
         public ActionResult Logout()
         {
-            status = false;
-            username = null;
+            Session.Abandon();
+            NickCookie.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Add(NickCookie);
             return View();
         }
 
         public ActionResult Add()
         {
-            ViewBag.username = username;
+            try
+            {
+                ViewBag.username = Request.Cookies["username"].Value;
+            }
+            catch
+            {
+            }
 
             return View();
         }
@@ -757,9 +890,15 @@ namespace FitBuddy.Controllers
         [HttpPost]
         public ActionResult Add(Product product)
         {
-            ViewBag.username = username;
+            try
+            {
+                ViewBag.username = Request.Cookies["username"].Value;
+            }
+            catch
+            {
+            }
 
-            if (!status)
+            if (Request.Cookies["username"] == null)
             {
                 ViewBag.existing = "You have to be looged in to add product!";
                 return View();
@@ -794,7 +933,13 @@ namespace FitBuddy.Controllers
 
         public ActionResult Scale()
         {
-            ViewBag.username = username;
+            try
+            {
+                ViewBag.username = Request.Cookies["username"].Value;
+            }
+            catch
+            {
+            }
             ViewBag.ip = ip;
             //ViewBag.rjs = downloadcont();
 
@@ -807,7 +952,13 @@ namespace FitBuddy.Controllers
         [HttpPost]
         public ActionResult Scale(double gram = 100, bool type = false, string pronam="")
         {
-            ViewBag.username = username;
+            try
+            {
+                ViewBag.username = Request.Cookies["username"].Value;
+            }
+            catch
+            {
+            }
             ViewBag.ip = ip;
             string helper = weightresult(ip).Replace(".", ",");
             double helper2;
@@ -835,7 +986,7 @@ namespace FitBuddy.Controllers
 
             }
 
-            if (status)
+            if (Request.Cookies["username"] != null)
             {
 
                 ViewBag.Protein = prod.Protein;
@@ -846,11 +997,11 @@ namespace FitBuddy.Controllers
                 ProdHistory productt = new ProdHistory()
                 {
                     Name = prod.Name,
-                    Kcal =  prod.Kcal * (ViewBag.g/100),
+                    Kcal = prod.Kcal * (ViewBag.g / 100),
                     Protein = prod.Protein * (ViewBag.g / 100),
                     Carb = prod.Carb * (ViewBag.g / 100),
                     Fats = prod.Fats * (ViewBag.g / 100),
-                    Nick = username
+                    Nick = Request.Cookies["username"].Value
                 };
 
                 List<ProdHistory> help2 = dbh.ProdHistoryy.ToList();  
@@ -865,7 +1016,7 @@ namespace FitBuddy.Controllers
 
         public ActionResult Login()
         {
-            if (status)
+            if (Request.Cookies["username"] != null)
             {
                 Response.Redirect("Index");
                 return View();
@@ -876,7 +1027,7 @@ namespace FitBuddy.Controllers
         [HttpPost]
         public ActionResult Login(string Nick, string pass)
         {
-            if (status)
+            if (Request.Cookies["username"] != null)
             {
                 Response.Redirect("Index");
                 return View();
@@ -892,8 +1043,6 @@ namespace FitBuddy.Controllers
             //..
 
             User us = dbu.Users.Find(Nick);
-
-         
 
             if(dbu.Users.Find(Nick) == null)
             {
@@ -918,9 +1067,12 @@ namespace FitBuddy.Controllers
 
             if (Crypto.VerifyHashedPassword(us.Pass, pass))
             {
-                status = true;
-                username = Nick;
-                ViewBag.username = username;
+                //HttpCookie NickCookie = new HttpCookie("username", us.Nick);
+                NickCookie.Value = us.Nick;
+                Response.Cookies.Add(NickCookie);
+                //Session["username"] = us.Nick;
+                //Session["status"] = true;
+                //ViewBag.username = (string)Session["username"];
                 ViewBag.passinv = null;
                 ViewBag.nickinv = null;
                 Response.Redirect("Index");
@@ -933,7 +1085,7 @@ namespace FitBuddy.Controllers
 
         public ActionResult Signup()
         {
-            if (status)
+            if (Request.Cookies["username"] != null)
             {
                 Response.Redirect("Index");
                 return View();
@@ -944,7 +1096,7 @@ namespace FitBuddy.Controllers
         [HttpPost]
         public ActionResult Signup(string Nick, string Email, string Pass ,string passrep)
         {
-            if (status)
+            if (Request.Cookies["username"] != null)
             {
                 Response.Redirect("Index");
                 return View();
@@ -980,7 +1132,7 @@ namespace FitBuddy.Controllers
             }
             else
             {
-                ViewBag.existing = "Feel free to log in!";
+                ViewBag.existing = "Confirm your mail!";
                 List<User> help = dbu.Users.ToList();
                 user.IDu = help.Count;
                 user.Limit = 40000;
@@ -1032,7 +1184,7 @@ namespace FitBuddy.Controllers
                     }
                     
                     msg.Subject = "Confirm your registeration";
-                    var url = "http://localhost:50647/FitBuddy/Confirm?regID=" + user.regID;
+                    var url = "http://fitbuddy.com.pl/FitBuddy/Confirm?regID=" + user.regID;
                     using (StreamReader reader = new StreamReader(Server.MapPath("~/MailStyle/ActivMail.html")))
                     {
                         msg.Body = reader.ReadToEnd();
