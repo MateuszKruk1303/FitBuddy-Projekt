@@ -31,6 +31,7 @@ namespace FitBuddy.Controllers
         public string ip;
         public int Id = 2;
         HttpCookie NickCookie = new HttpCookie("username", null);
+        HttpCookie WeightIP = new HttpCookie("ip", null);
 
         private string weightresult(string ip)
         {                          
@@ -738,7 +739,15 @@ namespace FitBuddy.Controllers
     [HttpPost]
         public ActionResult Index(string Name, string Subject, string text)
         {
-            if(Request.Cookies["username"] != null)
+            try
+            {
+                ViewBag.username = Request.Cookies["username"].Value;
+            }
+            catch
+            {
+            }
+
+            if (Request.Cookies["username"] != null)
             {
                 try
                 {
@@ -808,7 +817,9 @@ namespace FitBuddy.Controllers
             {
             }
 
-            ip = IP;
+            
+            Response.Cookies.Add(WeightIP);
+            Request.Cookies["ip"].Value = IP;
             return View();
         }
 
@@ -936,11 +947,12 @@ namespace FitBuddy.Controllers
             try
             {
                 ViewBag.username = Request.Cookies["username"].Value;
+                ViewBag.ip = Request.Cookies["ip"].Value;
             }
             catch
             {
             }
-            ViewBag.ip = ip;
+            
             //ViewBag.rjs = downloadcont();
 
             
@@ -955,20 +967,29 @@ namespace FitBuddy.Controllers
             try
             {
                 ViewBag.username = Request.Cookies["username"].Value;
+                ViewBag.ip = Request.Cookies["ip"].Value;
+                string ip = Request.Cookies["ip"].Value;
             }
-            catch
+            catch(Exception e)
             {
+
+                ViewBag.existing = "Wyjwalone na traku " + e;
+                
             }
-            ViewBag.ip = ip;
-            string helper = weightresult(ip).Replace(".", ",");
-            double helper2;
+
+            //string ipw = Request.Cookies["ip"].Value;
+            
+            
+            
 
             if (type == false)
             {
                 ViewBag.g = gram;
+                ViewBag.existing = "Hey boy! wartosc domyslna";
             }
             else
             {
+                string helper = weightresult(ip).Replace(".", ",");
                 ViewBag.g = Convert.ToDouble(helper) * 10;
             }
 

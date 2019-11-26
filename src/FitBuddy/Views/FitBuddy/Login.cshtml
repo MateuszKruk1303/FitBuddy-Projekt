@@ -156,45 +156,49 @@
     </section>
     <footer>@ViewBag.existing</footer>
 
+    <div class="BottomLook">
+
+    </div>
+
     @*<script>
-        const nick = document.getElementById("Nick");
-        const password = document.getElementById("Password");
-        const form = document.getElementById("signin");
-        const passinva = document.getElementById("passinva");
-        const nickinva = document.getElementById("nickinva");
-        const nickvali = document.getElementById("nickvali");
-        let comunicate;
-        let comunicate2;
-        
+            const nick = document.getElementById("Nick");
+            const password = document.getElementById("Password");
+            const form = document.getElementById("signin");
+            const passinva = document.getElementById("passinva");
+            const nickinva = document.getElementById("nickinva");
+            const nickvali = document.getElementById("nickvali");
+            let comunicate;
+            let comunicate2;
 
-        form.addEventListener('submit', (e) => {
 
-        comunicate = "@ViewBag.nickinv";
-        comunicate2 = "@ViewBag.passinv";
+            form.addEventListener('submit', (e) => {
 
-            if (comunicate != "") {
+            comunicate = "@ViewBag.nickinv";
+            comunicate2 = "@ViewBag.passinv";
 
-                nickinva.innerHTML = "@ViewBag.nickinv";
-                nickinva.style.display = "block";
-                e.preventDefault();
-                comunicate = "";
-                comuncate2 = "";
-                
+                if (comunicate != "") {
 
-            }
-            if (comunicate2 != "" && comunicate == "") {
+                    nickinva.innerHTML = "@ViewBag.nickinv";
+                    nickinva.style.display = "block";
+                    e.preventDefault();
+                    comunicate = "";
+                    comuncate2 = "";
 
-                passinva.innerHTML = "@ViewBag.passinv";
-                passinva.style.display = "block";
-                nickinva.style.display = "none";
-                e.preventDefault();
-                comunicate = "";
-                comuncate2 = "";
 
-            }
+                }
+                if (comunicate2 != "" && comunicate == "") {
 
-        })
-    </script>*@
+                    passinva.innerHTML = "@ViewBag.passinv";
+                    passinva.style.display = "block";
+                    nickinva.style.display = "none";
+                    e.preventDefault();
+                    comunicate = "";
+                    comuncate2 = "";
+
+                }
+
+            })
+        </script>*@
 
 </body>
 

@@ -153,8 +153,8 @@
                 {
                     <!-- Group of material radios - option 1 -->
                     <div class="form-check mt-3">
-                        <input type="radio" class="form-check-input" id="materialGroupExample1" name="type" value="false">
-                        <label class="form-check-label text-light" for="materialGroupExample1">Use weight</label>
+                        <input type="radio" class="form-check-input" id="materialGroupExample1" name="type" value="true">
+                        <label class="form-check-label text-light" for="materialGroupExample1">Use Scale</label>
                     </div>
 
                     <!-- Group of material radios - option 2 -->
@@ -286,8 +286,11 @@
                         ]
                     },
                     options: {
+
                         title: {
                             display: true,
+                            text: 'Weight : @ViewBag.g grams',
+                            fontSize: 20,
                             fontColor: "white",
                             hoverBorderColor: "yellow",
                         },
@@ -409,6 +412,10 @@
 
     }
 
+    <div class="BottomLook">
+
+    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -417,6 +424,5 @@
 
 
 </body>
-<script src="script.js"></script>
 
 </html>

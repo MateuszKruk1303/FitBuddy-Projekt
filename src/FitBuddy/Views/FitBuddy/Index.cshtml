@@ -89,7 +89,7 @@
 
         <nav class="navbar navbar-dark bg-dark sticky-top mob">
 
-            <a class="navbar-brand" href="Index">Navbar</a>
+            <a class="navbar-brand" href="Index">@ViewBag.username</a>
 
             <!-- Collapse button -->
             <button class="navbar-toggler toggler-example ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
@@ -197,13 +197,13 @@
                         <i class="fas fa-chart-line"></i><br />
                         Progress system
                     </div>
-                
-                <div class="smallcont">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </div>
-                    </a>
+
+                    <div class="smallcont">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                </a>
 
             </div>
             <div class="subdiv calories">
@@ -239,14 +239,14 @@
     </section>
     <div id="prog" class="display-1">
 
-        <a id="scrolltop1" href="#top" >
+        <a id="scrolltop1" href="#top">
             1
         </a>
 
     </div>
     <div id="calc" class="display-1">
 
-        <a id="scrolltop2" href="#top" >
+        <a id="scrolltop2" href="#top">
             2
         </a>
 
@@ -295,28 +295,34 @@
             }
             <p class="weltext desc"> LET'S CALCULATE YOUR FOOD!</p>
         </section>*@
-    <footer id="MessageForm">
-        <div class="MessageTitlebox">
-            <h1 class="MessageTitle">Contact With us</h1>
-        </div>
-        
-        @using (Html.BeginForm("Index", "FitBuddy", FormMethod.Post))
-        {
+    @if (ViewBag.username != null)
+    {
 
-        <div style="width: 50vw;" class="form-group mx-auto">
-                <input id="From" class="Textfield mb-4" type="text" placeholder="Your Name" name="Name" required />
-                <input id="Fromx" class="Textfield mb-4" type="text" placeholder="Subject" name="Subject" required />
-                <textarea placeholder="Your Message..." style="width:100%;" class="form-control mx-auto" rows=10 id="exampleFormControlTextarea3" name="text"></textarea>
-                <input class="btn btn-success btn-outline" type="submit" value="SEND" />
-        </div>
+        <footer id="MessageForm">
+            <div class="MessageTitlebox">
+                <h1 class="MessageTitle">Contact With us</h1>
+            </div>
 
-        }
+            @using (Html.BeginForm("Index", "FitBuddy", FormMethod.Post))
+            {
 
-        <p class="text-danger text-center display-4" style="margin-top:5%;">
-            @ViewBag.existing
-        </p>
-    </footer>
-   
+                <div class="Mailcont form-group mx-auto" style="width: 50vw;">
+                    <input id="From" class="Textfield mb-4 d-block mx-auto" type="text" placeholder="Your Name" name="Name" required />
+                    <input id="Fromx" class="Textfield mb-4 d-block mx-auto" type="text" placeholder="Subject" name="Subject" required />
+                    <textarea placeholder="Your Message..." style="width:100%;" class="form-control mx-auto" rows=10 id="exampleFormControlTextarea3" name="text"></textarea>
+                    <input class="btn btn-success btn-outline d-block mx-auto mt-5" type="submit" value="SEND" />
+                </div>
+
+            }
+
+            <p class="text-success text-center" style="margin-top:5%; font-size:calc(0.5vw + 2rem);">
+                @ViewBag.existing
+            </p>
+        </footer>
+
+    }
+
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
