@@ -921,7 +921,7 @@ namespace FitBuddy.Controllers
                 if (!ModelState.IsValid)
                 {
                     ViewBag.existing = "Fill up every field!";
-                    return View(); ;
+                    return View();
                 }
                 if (db.Products.Find(product.Name) != null)
                 {
@@ -966,14 +966,24 @@ namespace FitBuddy.Controllers
         {
             try
             {
-                ViewBag.username = Request.Cookies["username"].Value;
-                ViewBag.ip = Request.Cookies["ip"].Value;
-                string ip = Request.Cookies["ip"].Value;
+                if(Request.Cookies["username"] != null)
+                {
+                    ViewBag.username = Request.Cookies["username"].Value;
+                }
+                if(Request.Cookies["ip"] != null)
+                {
+
+                    ViewBag.ip = Request.Cookies["ip"].Value;
+                    string ip = Request.Cookies["ip"].Value;
+
+                }
+                
+               
             }
             catch(Exception e)
             {
 
-                ViewBag.existing = "Wyjwalone na traku " + e;
+                
                 
             }
 
@@ -985,12 +995,11 @@ namespace FitBuddy.Controllers
             if (type == false)
             {
                 ViewBag.g = gram;
-                ViewBag.existing = "Hey boy! wartosc domyslna";
             }
             else
             {
-                string helper = weightresult(ip).Replace(".", ",");
-                ViewBag.g = Convert.ToDouble(helper) * 10;
+                string toConv = Request.Cookies["gramy"].Value;
+                ViewBag.g = Convert.ToDouble(toConv);
             }
 
             if (pronam == null)
@@ -1025,7 +1034,7 @@ namespace FitBuddy.Controllers
                     Nick = Request.Cookies["username"].Value
                 };
 
-                List<ProdHistory> help2 = dbh.ProdHistoryy.ToList();  
+                List<ProdHistory> help2 = dbh.ProdHistoryy.ToList();
                 productt.HisID = help2.Count;
                 dbh.ProdHistoryy.Add(productt);
                 dbh.SaveChanges();

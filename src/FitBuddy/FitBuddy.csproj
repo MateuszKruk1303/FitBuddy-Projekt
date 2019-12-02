@@ -152,6 +152,7 @@
     <Content Include="Styles\bckgr.jpg" />
     <Content Include="Styles\bckgr3.jpg" />
     <Content Include="Styles\bckgr5.jpg" />
+    <Content Include="Styles\Chartex.jpg" />
     <Content Include="Styles\icon.png" />
     <Content Include="Styles\Logo.png" />
     <Content Include="Styles\MainPage.css" />

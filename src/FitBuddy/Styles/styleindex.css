@@ -249,19 +249,93 @@ div.smallcont {
 #prog {
     width: 100%;
     height: 100vh;
-    background-color: blue;
+    background-color: #333333;
 }
+
+    /*#prog > div {
+        text-align: center;
+        color: white;
+        font-family: 'Exo 2', sans-serif;
+    }*/
+
+#scrolltop1 {
+
+    color: white;
+}
+
+
+.Title {
+    text-align: center;
+    font-size: calc(2.5rem + 0.7vw);
+    font-family: 'Exo 2', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 17vh;
+    color:white;
+}
+
+
+
+.Content-container{
+
+    width:100vw;
+    height:80vh;
+
+}
+
+.scroll-item-3>a{
+
+    color:white;
+}
+
+.Content-container > .linear {
+
+    height: 30vh;
+    width:60vw;
+    margin:0 auto;
+}
+
+.Content-container > .scroll-item-1 {
+
+    height: 32vh;
+}
+
+    .Content-container > .scroll-item-2 {
+        text-align: center;
+        font-size: calc(0.8rem + 0.7vw);
+        font-family: 'Exo 2', sans-serif;
+        height: 23vh;
+        width:90vw;
+        margin:0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color:white;
+    }
+
+    .Content-container > .scroll-item-3 {
+        text-align: center;
+        font-size: calc(1.4rem + 0.7vw);
+        font-family: 'Exo 2', sans-serif;
+        height: 20vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color:white;
+    }
+
 
 #calc {
     width: 100%;
     height: 100vh;
-    background-color: aquamarine;
+    background-color:#333333; 
 }
 
 #scale {
     width: 100%;
     height: 100vh;
-    background-color: coral;
+    background-color: #333333;
 }
 
 .MessageTitlebox {

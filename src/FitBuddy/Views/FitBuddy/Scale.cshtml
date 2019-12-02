@@ -169,7 +169,7 @@
 
                 }
 
-                <input class="Fromb btn btn-success text-dark" type="submit" value="SELECT" />
+                <input id="but" class="Fromb btn btn-success text-dark" type="submit" value="SELECT" />
 
             </div>
 
@@ -188,11 +188,23 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th class="h4" scope="row">@Model.Name</th>
-                            <td class="font-weight-bold h4">@(Model.Kcal * (ViewBag.g / 100))</td>
-                            <td class="font-weight-bold h4">@(Model.Protein * (ViewBag.g / 100))g</td>
-                            <td class="font-weight-bold h4">@(Model.Carb * (ViewBag.g / 100))g</td>
-                            <td class="font-weight-bold h4">@(Model.Fats * (ViewBag.g / 100))g</td>
+                            @*@if (ViewBag.type)
+                            {*@
+                                <th class="h4" scope="row">@Model.Name</th>
+                                <td id="kcal" class="font-weight-bold h4">@(Model.Kcal * (ViewBag.g / 100))</td>
+                                <td id="prot" class="font-weight-bold h4">@(Model.Protein * (ViewBag.g / 100))g</td>
+                                <td id="carb" class="font-weight-bold h4">@(Model.Carb * (ViewBag.g / 100))g</td>
+                                <td id="fats" class="font-weight-bold h4">@(Model.Fats * (ViewBag.g / 100))g</td>
+                            @*}
+                            else
+                            {
+                                <th class="h4" scope="row">@Model.Name</th>
+                                <td class="font-weight-bold h4">@(Model.Kcal * (ViewBag.g / 100))</td>
+                                <td class="font-weight-bold h4">@(Model.Protein * (ViewBag.g / 100))g</td>
+                                <td class="font-weight-bold h4">@(Model.Carb * (ViewBag.g / 100))g</td>
+                                <td class="font-weight-bold h4">@(Model.Fats * (ViewBag.g / 100))g</td>
+                            }*@
+
                         </tr>
                     </tbody>
                 </table>
@@ -289,7 +301,6 @@
 
                         title: {
                             display: true,
-                            text: 'Weight : @ViewBag.g grams',
                             fontSize: 20,
                             fontColor: "white",
                             hoverBorderColor: "yellow",
@@ -421,7 +432,72 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+    <script>
 
+        //const Http = new XMLHttpRequest();
+        //const url = 'https://www.onet.pl/';
+        //Http.open("GET", url);
+        //Http.send();
+
+        //Http.onreadystatechange = (e) => {
+        //    console.log(Http.responseText)
+        //}
+
+        @*let string = "http://"+@ViewBag.ip+"/";*@
+
+            let d = "@ViewBag.ip";
+        
+
+        let g = 0;
+        
+        let k = document.getElementById("kcal");
+        let p = document.getElementById("prot");
+        let c = document.getElementById("carb");
+        let f = document.getElementById("fats");
+        let btn = document.getElementById("but");
+
+        let ev = btn.addEventListener("click", function () {
+
+            document.cookie = `gramy=${g}`;
+
+
+        })
+
+
+        @*@if(Model != null)
+        {
+            @:let kcal = @Model.Kcal;
+            @:let prot = @Model.Protein;
+            @:let carb = @Model.Carb;
+            @:let fats = @Model.Fats;
+        }*@
+
+
+                                                           
+
+        let a = function () {
+
+
+            
+            fetch('http://' + d + '/').then((resp) => { return resp.text() }).then((text) => { console.log(text); g = text * 10; });
+
+            //kcal = kcal * g / 100;
+            //prot = prot * g / 100;
+            //carb = carb * g / 100;
+            //fats = fats * g / 100;
+
+            //k.innerHTML = kcal;
+            //p.innerHTML = prot;
+            //c.innerHTML = carb;
+            //f.innerHTML = fats;
+            
+
+        }
+
+        //let b = window.setInterval(function () { console.log("a"); }, 100);
+        let inter = window.setInterval(a, 50);        
+
+    </script>
 
 </body>
 
