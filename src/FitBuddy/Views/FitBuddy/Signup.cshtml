@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/Styles/stylesignup.css">
     <link rel="stylesheet" href="~/Styles/Navbarstyle.css" />
-    <title>Document</title>
+    <title>FitBuddy</title>
 </head>
 
 <body>
@@ -147,7 +147,7 @@
         @using (Html.BeginForm("Signup", "FitBuddy", FormMethod.Post))
         {
             <input class="Textfield mt-5 mb-4 mx-auto" style="text-align:center;" type="text" name="Nick" placeholder="Enter Nickname" required />
-            <input class="Textfield my-4 mx-auto" style="text-align:center;" type="text" name="Email" placeholder="Enter email" required/>
+            <input class="Textfield my-4 mx-auto" style="text-align:center;" type="text" name="Email" placeholder="Enter email" required />
             <input class="Textfield my-4 mx-auto" style="text-align:center;" type="password" name="Pass" placeholder="Enter Password" required />
             <input class="Textfield my-4 mx-auto" style="text-align:center;" type="password" name="Passrep" placeholder="Repeat Password" required />
             <input class="Fromb my-4 p-1 mx-auto btn btn-success text-dark" style="text-align:center;" type="submit" value="Register" />
@@ -156,6 +156,10 @@
     <footer>
         @ViewBag.existing
     </footer>
+
+    <div class="BottomLook">
+
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

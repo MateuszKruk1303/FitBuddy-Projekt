@@ -10,6 +10,7 @@
 <html lang="en">
 
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -25,7 +26,7 @@
 
 
 
-    <title>Document</title>
+    <title>FitBuddy</title>
 </head>
 
 <body>
@@ -89,7 +90,7 @@
 
         <nav class="navbar navbar-dark bg-dark sticky-top mob">
 
-            <a class="navbar-brand" href="Index">Navbar</a>
+            <a class="navbar-brand" href="Index">@ViewBag.username</a>
 
             <!-- Collapse button -->
             <button class="navbar-toggler toggler-example ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
@@ -162,12 +163,12 @@
 
     }
 
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" style="">
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <a id="imgcont"><img id="icon" class="slid" src="~/Styles/icon.png"></a>
                 <h1 class="slid main">Scale Your Food</h1>
-                <h1 class="slid sub">You must know what do you eat</h1>
+                <h1 class="slid sub">You must knoow what do you eat</h1>
                 <img class="d-block w-100 h-100" src="~/Styles/Slider1.jpg" alt="First slide">
 
             </div>
@@ -197,13 +198,13 @@
                         <i class="fas fa-chart-line"></i><br />
                         Progress system
                     </div>
-                
-                <div class="smallcont">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </div>
-                    </a>
+
+                    <div class="smallcont">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                </a>
 
             </div>
             <div class="subdiv calories">
@@ -237,26 +238,65 @@
             </div>
         </div>
     </section>
-    <div id="prog" class="display-1">
+    <div id="prog" class="Scroll-container">
+        <div class="Title">Progress system</div>
+        <div class="Content-container">
+            <div class="scroll-item-1 linear" style="position:relative;">
+                <canvas id="line-chart1" style="background-color: rgba(204, 255, 51, 0);"></canvas>
+            </div>
+            <div class="scroll-item-2">
+                On our site you can discover progress system - Charts, which are presenting change of your body
+                measurments in time. Register and try it! Remember - you have to update regulary you measure
+                data to benefit as much as possible from progress system.
+            </div>
+            <div class="scroll-item-3">
+                <a id="scrolltop1" href="#top">
+                    Go up
+                </a>
+            </div>
 
-        <a id="scrolltop1" href="#top" >
-            1
-        </a>
-
+        </div>
     </div>
-    <div id="calc" class="display-1">
 
-        <a id="scrolltop2" href="#top" >
-            2
-        </a>
+    <div id="calc" class="Scroll-container">
+        <div class="Title">Food Calculator</div>
+        <div class="Content-container">
+            <div class="scroll-item-1">
+                <canvas class="chart" width="300" height="180"></canvas>
+            </div>
+            <div class="scroll-item-2">
+                If you want to reach your goals in good time, you
+                have to calculate your food. it means - Taking care about macro nutrients and calories.
+                There is easy way do do it - type name of your product, weight and click button, to get information
+                about your product!
+            </div>
+            <div class="scroll-item-3">
+                <a id="scrolltop2" href="#top">
+                    Go up
+                </a>
+            </div>
 
+        </div>
     </div>
-    <div id="scale" class="display-1">
+    <div id="scale" class="Scroll-container">
+        <div class="Title">Scale</div>
+        <div class="Content-container">
+            <div class="scroll-item-1">
+                @*<canvas class="chart" width="300" height="180"></canvas>*@
+            </div>
+            <div class="scroll-item-2">
+                We have also build scale for our website, using arduino, wood and tensometric-belt. Its not finished
+                yet, but for now, you can easily connect your weight to our website (Write ip from display in Account
+                section), then type name of your product and check "Use scale". Weight result will be sent to our website
+                and product will be calculated! (picture coming soon)
+            </div>
+            <div class="scroll-item-3">
+                <a id="scrolltop3" href="#top">
+                    Go up
+                </a>
+            </div>
 
-        <a id="scrolltop3" href="#top">
-            3
-        </a>
-
+        </div>
     </div>
 
     @*<nav class="normal">
@@ -295,32 +335,188 @@
             }
             <p class="weltext desc"> LET'S CALCULATE YOUR FOOD!</p>
         </section>*@
-    <footer id="MessageForm">
-        <div class="MessageTitlebox">
-            <h1 class="MessageTitle">Contact With us</h1>
-        </div>
-        
-        @using (Html.BeginForm("Index", "FitBuddy", FormMethod.Post))
-        {
+    @if (ViewBag.username != null)
+    {
 
-        <div style="width: 50vw;" class="form-group mx-auto">
-                <input id="From" class="Textfield mb-4" type="text" placeholder="Your Name" name="Name" required />
-                <input id="Fromx" class="Textfield mb-4" type="text" placeholder="Subject" name="Subject" required />
-                <textarea placeholder="Your Message..." style="width:100%;" class="form-control mx-auto" rows=10 id="exampleFormControlTextarea3" name="text"></textarea>
-                <input class="btn btn-success btn-outline" type="submit" value="SEND" />
-        </div>
+        <footer id="MessageForm">
+            <div class="MessageTitlebox">
+                <h1 class="MessageTitle">Contact With us</h1>
+            </div>
 
-        }
+            @using (Html.BeginForm("Index", "FitBuddy", FormMethod.Post))
+            {
 
-        <p class="text-danger text-center display-4" style="margin-top:5%;">
-            @ViewBag.existing
-        </p>
-    </footer>
-   
+                <div class="Mailcont form-group mx-auto" style="width: 50vw;">
+                    <input id="From" class="Textfield mb-4 d-block mx-auto" type="text" placeholder="Your Name" name="Name" required />
+                    <input id="Fromx" class="Textfield mb-4 d-block mx-auto" type="text" placeholder="Subject" name="Subject" required />
+                    <textarea placeholder="Your Message..." style="width:100%;" class="form-control mx-auto" rows=10 id="exampleFormControlTextarea3" name="text"></textarea>
+                    <input class="btn btn-success btn-outline d-block mx-auto mt-5" type="submit" value="SEND" />
+                </div>
+
+            }
+
+            <p class="text-success text-center" style="margin-top:5%; font-size:calc(0.5vw + 2rem);">
+                @ViewBag.existing
+            </p>
+        </footer>
+
+    }
+
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="~/Scripts/scriptindex.js"></script>
+    <script>
+        new Chart(document.getElementsByClassName("chart"), {
+            type: 'doughnut',
+            data: {
+                labels: [`Carbohydrates`, `Protein`, `Fats`],
+                datasets: [
+                    {
+                        backgroundColor: ["#ff7300", "#99ff00", "#00aeff"],
+                        data: [40, 28, 30]
+                    }
+                ]
+            },
+            options: {
+
+                title: {
+                    display: true,
+                    fontSize: 20,
+                    fontColor: "white",
+                    hoverBorderColor: "yellow",
+                },
+
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+
+                    labels: {
+
+                        fontSize: 15,
+                        fontColor: "white"
+                    }
+                },
+
+                tooltips: {
+                    callbacks: {
+                        title: function (tooltipItem, data) {
+                            // return data['labels'][tooltipItem[0]['index']];
+                        },
+                        label: function (tooltipItem, data) {
+                            // empty function, because default displays that what i dont wanna see.
+                        },
+                        afterLabel: function (tooltipItem, data) {
+                            var dataset = data['datasets'][0];
+                            var percent = Math.round((dataset['data'][tooltipItem['index']] / dataset["_meta"][0]['total']) * 100)
+                            return '(' + percent + '%)';
+                        }
+                    },
+                    backgroundColor: '#FFF',
+                    titleFontSize: 16,
+                    titleFontColor: '#0066ff',
+                    bodyFontColor: '#000',
+                    bodyFontSize: 14,
+                    displayColors: false
+                }
+            }
+
+
+
+
+
+
+
+        });
+    </script>
+
+    <script>
+        var ch = document.getElementById("line-chart1").getContext("2d");
+
+            let Biceps = new Chart(ch, {
+            type: 'line',
+            data: {
+            labels: ['1.', '2.', '3.'],
+                datasets: [{
+                    data: [70, 62, 56],
+                    label: "Weight",
+                    borderColor: "#ccff33",
+                    fill: "start",
+                    fillColor: "yellow",
+                    pointRadius: 4,
+                    pointHoverRadius: 4,
+                    pointBorderWidth: 1,
+                    pointHoverBorderWidth: 1,
+                    pointHoverBorderColor: "rgb(51, 255, 51)",
+                    pointBorderColor: "rgb(51, 255, 51)",
+                    backgroundColor: "rgb(222, 222, 222)",
+
+
+
+                }
+
+                ]
+                },
+
+
+
+            //datasets.data[0] = 3,
+
+
+                options: {
+
+                    title: {
+                        display: true,
+                        text: "Weight progress chart",
+                        fontColor: "#ffffff",
+                        fontSize: 20,
+                    },
+
+                    maintainAspectRatio: false,
+                    responsive: true, 
+
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontColor: 'rgb(255, 255, 255)'
+                        }
+                    },
+
+
+
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                fontColor: "#ffffff",
+                                fontStyle: "bold",
+                                padding: 20
+                            },
+                            gridLines: {
+                                drawTicks: true,
+                                display: true,
+                                color: "#cccccc"
+                            }
+                        }],
+                        xAxes: [{
+
+                            ticks: {
+                                padding: 20,
+                                fontColor: "#ffffff",
+                                fontStyle: "bold"
+                            },
+                            gridLines: {
+                                drawTicks: true,
+                                display: true,
+                                color: "#cccccc"
+                            }
+                        }]
+                    }
+                }
+        });       
+
+    </script>
+
 </body>
 
 

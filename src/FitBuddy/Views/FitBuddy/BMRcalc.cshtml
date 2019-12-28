@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/Styles/stylelogin.css">
     <link rel="stylesheet" href="~/Styles/Navbarstyle.css" />
-    <title>Document</title>
+    <title>FitBuddy</title>
 </head>
 
 <body>
@@ -140,11 +140,11 @@
         <a href="Index"><img id="icon" src="~/Styles/icon.png"></a>
     </header>
 
-    <section>
-        @using (Html.BeginForm("BMRcalc", "FitBuddy", FormMethod.Post))
+    <section style="height:40vh; min-height:300px; max-height:500px;">
+        @using (Html.BeginForm("BMRcalc", "FitBuddy", FormMethod.Post, new {@class="pozycja" }))
         {
-            <input class="Textfield my-4" style="font-size:20px;" type="text" placeholder="Trainings per week" name="ex" required/>
-            <input class="Textfield my-4" style="font-size:20px;" type="text" placeholder="Workout time (minutes)" name="time" required/>
+            <input class="Textfield my-4" style="font-size:20px;" type="text" placeholder="Trainings per week" name="ex" required />
+            <input class="Textfield my-4" style="font-size:20px;" type="text" placeholder="Workout time (minutes)" name="time" required />
             <!-- Group of material radios - option 1 -->
             <div class="clearfix mx-auto my-3" style="width:100px;">
                 <div class="form-check d-block float-left clearfix">
@@ -158,10 +158,10 @@
                     <label class="form-check-label" style="font-size:20px;" for="materialGroupExample2">Mass</label>
                 </div>
             </div>
-            
 
 
-            <input class="btn btn-success btn-outline mt-4" type="submit" value="Login" />
+
+            <input class="btn btn-success btn-outline my-4 mx-auto d-block" type="submit" value="Login" />
         }
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -170,13 +170,17 @@
     </section>
     @if (ViewBag.existing != null)
     {
-        <footer>@ViewBag.existing</footer>
+        <footer class="d-block my-5">Your daily calories limit is: <br /> @ViewBag.existing Kcal</footer>
     }
     else
     {
         <footer>@ViewBag.test</footer>
     }
+
+    <div class="BottomLook">
+
+    </div>
+
 </body>
-<script src="script.js"></script>
 
 </html>

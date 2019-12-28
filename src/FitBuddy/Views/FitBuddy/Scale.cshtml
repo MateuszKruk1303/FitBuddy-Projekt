@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/Styles/stylescale.css">
     <link rel="stylesheet" href="~/Styles/Navbarstyle.css" />
-    <title>Document</title>
+    <title>FitBuddy</title>
 </head>
 
 <body>
@@ -153,8 +153,8 @@
                 {
                     <!-- Group of material radios - option 1 -->
                     <div class="form-check mt-3">
-                        <input type="radio" class="form-check-input" id="materialGroupExample1" name="type" value="false">
-                        <label class="form-check-label text-light" for="materialGroupExample1">Use weight</label>
+                        <input type="radio" class="form-check-input" id="materialGroupExample1" name="type" value="true">
+                        <label class="form-check-label text-light" for="materialGroupExample1">Use Scale</label>
                     </div>
 
                     <!-- Group of material radios - option 2 -->
@@ -169,7 +169,7 @@
 
                 }
 
-                <input class="Fromb btn btn-success text-dark" type="submit" value="SELECT" />
+                <input id="but" class="Fromb btn btn-success text-dark" type="submit" value="SELECT" />
 
             </div>
 
@@ -188,11 +188,23 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th class="h4" scope="row">@Model.Name</th>
-                            <td class="font-weight-bold h4">@(Model.Kcal * (ViewBag.g / 100))</td>
-                            <td class="font-weight-bold h4">@(Model.Protein * (ViewBag.g / 100))g</td>
-                            <td class="font-weight-bold h4">@(Model.Carb * (ViewBag.g / 100))g</td>
-                            <td class="font-weight-bold h4">@(Model.Fats * (ViewBag.g / 100))g</td>
+                            @*@if (ViewBag.type)
+                            {*@
+                                <th class="h4" scope="row">@Model.Name</th>
+                                <td id="kcal" class="font-weight-bold h4">@(Model.Kcal * (ViewBag.g / 100))</td>
+                                <td id="prot" class="font-weight-bold h4">@(Model.Protein * (ViewBag.g / 100))g</td>
+                                <td id="carb" class="font-weight-bold h4">@(Model.Carb * (ViewBag.g / 100))g</td>
+                                <td id="fats" class="font-weight-bold h4">@(Model.Fats * (ViewBag.g / 100))g</td>
+                            @*}
+                            else
+                            {
+                                <th class="h4" scope="row">@Model.Name</th>
+                                <td class="font-weight-bold h4">@(Model.Kcal * (ViewBag.g / 100))</td>
+                                <td class="font-weight-bold h4">@(Model.Protein * (ViewBag.g / 100))g</td>
+                                <td class="font-weight-bold h4">@(Model.Carb * (ViewBag.g / 100))g</td>
+                                <td class="font-weight-bold h4">@(Model.Fats * (ViewBag.g / 100))g</td>
+                            }*@
+
                         </tr>
                     </tbody>
                 </table>
@@ -286,8 +298,10 @@
                         ]
                     },
                     options: {
+
                         title: {
                             display: true,
+                            fontSize: 20,
                             fontColor: "white",
                             hoverBorderColor: "yellow",
                         },
@@ -409,14 +423,90 @@
 
     }
 
+    <div class="BottomLook">
+
+    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+    <script>
 
+        //const Http = new XMLHttpRequest();
+        //const url = 'https://www.onet.pl/';
+        //Http.open("GET", url);
+        //Http.send();
+
+        //Http.onreadystatechange = (e) => {
+        //    console.log(Http.responseText)
+        //}
+
+        @*let string = "http://"+@ViewBag.ip+"/";*@
+
+            let d = "@ViewBag.ip";
+        
+
+        let g = 0;
+        
+        let k = document.getElementById("kcal");
+        let p = document.getElementById("prot");
+        let c = document.getElementById("carb");
+        let f = document.getElementById("fats");
+        let btn = document.getElementById("but");
+
+        function addMinutes(date, minutes) {
+            return new Date(date.getTime() + minutes * 60000);
+        }
+
+        let ev = btn.addEventListener("click", function () {
+
+            var today = new Date();
+            today = addMinutes(today, 1);
+            document.cookie = `gramy=${g};expires=`+ today;
+            
+
+
+
+        })
+
+
+        @*@if(Model != null)
+        {
+            @:let kcal = @Model.Kcal;
+            @:let prot = @Model.Protein;
+            @:let carb = @Model.Carb;
+            @:let fats = @Model.Fats;
+        }*@
+
+
+                                                           
+
+        let a = function () {
+
+
+            
+            fetch('http://' + d + '/').then((resp) => { return resp.text() }).then((text) => { console.log(text); g = text * 10; });
+
+            //kcal = kcal * g / 100;
+            //prot = prot * g / 100;
+            //carb = carb * g / 100;
+            //fats = fats * g / 100;
+
+            //k.innerHTML = kcal;
+            //p.innerHTML = prot;
+            //c.innerHTML = carb;
+            //f.innerHTML = fats;
+            
+
+        }
+
+        //let b = window.setInterval(function () { console.log("a"); }, 100);
+        let inter = window.setInterval(a, 50);        
+
+    </script>
 
 </body>
-<script src="script.js"></script>
 
 </html>
