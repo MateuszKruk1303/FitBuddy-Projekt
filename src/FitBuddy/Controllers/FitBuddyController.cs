@@ -882,6 +882,9 @@ namespace FitBuddy.Controllers
             Session.Abandon();
             NickCookie.Expires = DateTime.Now.AddDays(-1);
             Response.Cookies.Add(NickCookie);
+            WeightIP.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Add(WeightIP);
+
             return View();
         }
 

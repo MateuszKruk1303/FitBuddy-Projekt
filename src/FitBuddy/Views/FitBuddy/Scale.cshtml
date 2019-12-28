@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/Styles/stylescale.css">
     <link rel="stylesheet" href="~/Styles/Navbarstyle.css" />
-    <title>Document</title>
+    <title>FitBuddy</title>
 </head>
 
 <body>
@@ -456,9 +456,17 @@
         let f = document.getElementById("fats");
         let btn = document.getElementById("but");
 
+        function addMinutes(date, minutes) {
+            return new Date(date.getTime() + minutes * 60000);
+        }
+
         let ev = btn.addEventListener("click", function () {
 
-            document.cookie = `gramy=${g}`;
+            var today = new Date();
+            today = addMinutes(today, 1);
+            document.cookie = `gramy=${g};expires=`+ today;
+            
+
 
 
         })
